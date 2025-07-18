@@ -71,4 +71,4 @@ Polish has 7 grammatical cases, each answering specific questions:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. It is based on the [Polinguin](https://github.com/omersanik/polinguin) data.
