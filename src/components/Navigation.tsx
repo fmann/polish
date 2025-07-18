@@ -1,7 +1,28 @@
 import React from "react";
 
-const Navigation = ({ currentView, onViewChange }) => {
-  const navItems = [
+export type ViewType =
+  | "polish-to-english"
+  | "english-to-polish"
+  | "favorites"
+  | "tenses"
+  | "cases";
+
+interface NavigationProps {
+  currentView: ViewType;
+  onViewChange: (view: ViewType) => void;
+}
+
+interface NavItem {
+  id: ViewType;
+  label: string;
+  icon: string;
+}
+
+const Navigation: React.FC<NavigationProps> = ({
+  currentView,
+  onViewChange,
+}) => {
+  const navItems: NavItem[] = [
     { id: "polish-to-english", label: "Polish → English", icon: "🇵🇱→🇺🇸" },
     { id: "english-to-polish", label: "English → Polish", icon: "🇺🇸→🇵🇱" },
     { id: "favorites", label: "Favourites", icon: "⭐" },

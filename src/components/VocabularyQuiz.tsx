@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useVocabularyData } from "../hooks/useData";
 import { decodePolishText, getRandomItems } from "../utils/textUtils";
-import { getFavoriteWords, toggleFavorite, isFavorite } from "../utils/favorites";
+import {
+  getFavoriteWords,
+  toggleFavorite,
+  isFavorite,
+} from "../utils/favorites";
+import { VocabularyWord, QuizDirection } from "../types";
 
-const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
+interface VocabularyQuizProps {
+  direction: QuizDirection;
+  favoriteMode?: boolean;
+}
+
+const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
+  direction,
+  favoriteMode = false,
+}) => {
   const { data, loading, error } = useVocabularyData();
-  const [currentItems, setCurrentItems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [favorites, setFavorites] = useState([]);
-
-  // Load favorites on mount
-  useEffect(() => {
-    if (data.length > 0) {
-      setFavorites(getFavoriteWords(data));
-    }
-  }, [data]);
+  const [currentItems, setCurrentItems] = useState<VocabularyWord[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [showAnswer, setShowAnswer] = useState<boolean>(false);
+  const [favoritesChanged, setFavoritesChanged] = useState<number>(0);
 
   // Load new set of quiz items
   useEffect(() => {
     if (data.length > 0) {
-      let quizItems;
+      let quizItems: VocabularyWord[];
       if (favoriteMode) {
         const favoriteWords = getFavoriteWords(data);
         if (favoriteWords.length === 0) {
@@ -41,12 +47,12 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
   const currentItem = currentItems[currentIndex];
   const isPolishToEnglish = direction === "polish-to-english";
 
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = (): void => {
     if (currentItem) {
-      const updatedFavoriteIds = toggleFavorite(currentItem.id);
-      const updatedFavorites = data.filter(word => updatedFavoriteIds.includes(word.id));
-      setFavorites(updatedFavorites);
-      
+      toggleFavorite(currentItem.id);
+      // Force a re-render to update the star icon
+      setFavoritesChanged((prev) => prev + 1);
+
       // If we're in favorite mode and this was the last favorite, update items
       if (favoriteMode && !isFavorite(currentItem.id)) {
         const remainingFavorites = getFavoriteWords(data);
@@ -54,7 +60,9 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
           setCurrentItems([]);
         } else {
           // Remove this item from current items
-          const updatedItems = currentItems.filter(item => item.id !== currentItem.id);
+          const updatedItems = currentItems.filter(
+            (item) => item.id !== currentItem.id
+          );
           setCurrentItems(updatedItems);
           if (currentIndex >= updatedItems.length && updatedItems.length > 0) {
             setCurrentIndex(updatedItems.length - 1);
@@ -64,16 +72,19 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (currentIndex < currentItems.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowAnswer(false);
     } else {
       // Restart with new random items
-      let quizItems;
+      let quizItems: VocabularyWord[];
       if (favoriteMode) {
         const favoriteWords = getFavoriteWords(data);
-        quizItems = favoriteWords.length > 0 ? getRandomItems(favoriteWords, favoriteWords.length) : [];
+        quizItems =
+          favoriteWords.length > 0
+            ? getRandomItems(favoriteWords, favoriteWords.length)
+            : [];
       } else {
         quizItems = getRandomItems(data, 20);
       }
@@ -83,7 +94,7 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
     }
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setShowAnswer(false);
@@ -91,14 +102,22 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
   };
 
   // Derive values from current item
-  const questionText = currentItem 
-    ? (isPolishToEnglish ? decodePolishText(currentItem.word) : currentItem.translation)
+  const questionText = currentItem
+    ? isPolishToEnglish
+      ? decodePolishText(currentItem.word)
+      : currentItem.translation
     : "";
-  const answerText = currentItem 
-    ? (isPolishToEnglish ? currentItem.translation : decodePolishText(currentItem.word))
+  const answerText = currentItem
+    ? isPolishToEnglish
+      ? currentItem.translation
+      : decodePolishText(currentItem.word)
     : "";
-  const polishExample = currentItem ? decodePolishText(currentItem.exampleSentence) : "";
-  const englishExample = currentItem ? currentItem.exampleSentenceTranslate : "";
+  const polishExample = currentItem
+    ? decodePolishText(currentItem.exampleSentence)
+    : "";
+  const englishExample = currentItem
+    ? currentItem.exampleSentenceTranslate
+    : "";
 
   if (loading) {
     return (
@@ -129,10 +148,12 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
           <div className="space-y-4">
             <div className="text-6xl">⭐</div>
             <div>
-              <p className="text-gray-600 font-medium">No favorite words yet!</p>
+              <p className="text-gray-600 font-medium">
+                No favorite words yet!
+              </p>
               <p className="text-sm text-gray-500 mt-2">
-                Start by marking some vocabulary words as favorites using the star icon, 
-                then come back here to practice them.
+                Start by marking some vocabulary words as favorites using the
+                star icon, then come back here to practice them.
               </p>
             </div>
           </div>
@@ -162,15 +183,19 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
         <button
           onClick={handleToggleFavorite}
           className={`absolute top-4 left-4 text-2xl transition-colors ${
-            isFavorite(currentItem.id) 
-              ? 'text-yellow-400 hover:text-yellow-500' 
-              : 'text-gray-300 hover:text-yellow-400'
+            isFavorite(currentItem.id)
+              ? "text-yellow-500 hover:text-yellow-600"
+              : "text-gray-400 hover:text-gray-500"
           }`}
-          title={isFavorite(currentItem.id) ? 'Remove from favorites' : 'Add to favorites'}
+          title={
+            isFavorite(currentItem.id)
+              ? "Remove from favorites"
+              : "Add to favorites"
+          }
         >
-          ⭐
+          {isFavorite(currentItem.id) ? "★" : "☆"}
         </button>
-        
+
         <div className="mb-8">
           <h2 className="text-sm text-gray-500 mb-2">
             {isPolishToEnglish ? "Polish Word" : "English Word"}

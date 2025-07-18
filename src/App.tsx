@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Navigation from "./components/Navigation";
+import Navigation, { ViewType } from "./components/Navigation";
 import VocabularyQuiz from "./components/VocabularyQuiz";
 import TensesQuiz from "./components/TensesQuiz";
 import CasesQuiz from "./components/CasesQuiz";
 
-function App() {
-  const [currentView, setCurrentView] = useState("polish-to-english");
+const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<ViewType>("polish-to-english");
 
-  const renderCurrentView = () => {
+  const renderCurrentView = (): React.JSX.Element => {
     switch (currentView) {
       case "polish-to-english":
         return <VocabularyQuiz direction="polish-to-english" />;
@@ -52,6 +52,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;
