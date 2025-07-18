@@ -57,10 +57,8 @@ export interface GrammaticalCase {
 }
 
 export interface CaseDescription {
-  case: string;
-  question: string;
+  name: string;
   description: string;
-  examples: string[];
 }
 
 export type QuizDirection = "polish-to-english" | "english-to-polish";

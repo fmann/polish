@@ -40,7 +40,7 @@ const CasesQuiz: React.FC = () => {
 
   const currentItem = currentItems[currentIndex];
   const currentDescription = descriptions.find(
-    (d) => d.case.toLowerCase() === selectedCase.toLowerCase()
+    (d) => d.name && d.name.toLowerCase() === selectedCase.toLowerCase()
   );
 
   const handleNext = (): void => {
@@ -126,7 +126,7 @@ const CasesQuiz: React.FC = () => {
         {currentDescription && (
           <div className="mt-3 p-3 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-700">
-              <span className="font-medium">{currentDescription.case}:</span>{" "}
+              <span className="font-medium">{currentDescription.name}:</span>{" "}
               {currentDescription.description}
             </p>
           </div>
