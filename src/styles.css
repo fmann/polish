@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Polish character support */
+  body {
+    font-feature-settings: 'kern' 1;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  .quiz-card {
+    @apply bg-white rounded-lg shadow-lg p-6 border border-gray-200;
+  }
+
+  .nav-button {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors;
+  }
+
+  .reveal-button {
+    @apply px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors;
+  }
+
+  .polish-text {
+    @apply text-lg font-medium text-gray-900;
+  }
+
+  .english-text {
+    @apply text-gray-700;
+  }
+}

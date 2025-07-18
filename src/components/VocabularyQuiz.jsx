@@ -1,0 +1,167 @@
+import React, { useState, useEffect } from "react";
+import { useVocabularyData } from "../hooks/useData";
+import { decodePolishText, getRandomItems } from "../utils/textUtils";
+
+const VocabularyQuiz = ({ direction }) => {
+  const { data, loading, error } = useVocabularyData();
+  const [currentItems, setCurrentItems] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  // Load new set of quiz items
+  useEffect(() => {
+    if (data.length > 0) {
+      const quizItems = getRandomItems(data, 20); // Get 20 random items
+      setCurrentItems(quizItems);
+      setCurrentIndex(0);
+      setShowAnswer(false);
+    }
+  }, [data]);
+
+  const currentItem = currentItems[currentIndex];
+  const isPolishToEnglish = direction === "polish-to-english";
+
+  const handleNext = () => {
+    if (currentIndex < currentItems.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setShowAnswer(false);
+    } else {
+      // Restart with new random items
+      const quizItems = getRandomItems(data, 20);
+      setCurrentItems(quizItems);
+      setCurrentIndex(0);
+      setShowAnswer(false);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setShowAnswer(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="text-gray-600 mt-2">Loading vocabulary...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="quiz-card text-center">
+        <div className="text-red-600">
+          <p className="font-medium">Error loading vocabulary data</p>
+          <p className="text-sm mt-1">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!currentItem) {
+    return (
+      <div className="quiz-card text-center">
+        <p className="text-gray-600">No vocabulary data available</p>
+      </div>
+    );
+  }
+
+  const questionText = isPolishToEnglish
+    ? decodePolishText(currentItem.word)
+    : currentItem.translation;
+
+  const answerText = isPolishToEnglish
+    ? currentItem.translation
+    : decodePolishText(currentItem.word);
+
+  const polishExample = decodePolishText(currentItem.exampleSentence);
+  const englishExample = currentItem.exampleSentenceTranslate;
+
+  return (
+    <div className="space-y-6">
+      <div className="text-center text-sm text-gray-600">
+        <span className="bg-gray-100 px-3 py-1 rounded-full">
+          {currentIndex + 1} of {currentItems.length}
+        </span>
+        <span className="ml-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+          {currentItem.category}
+        </span>
+      </div>
+
+      <div className="quiz-card text-center min-h-[300px] flex flex-col justify-center">
+        <div className="mb-8">
+          <h2 className="text-sm text-gray-500 mb-2">
+            {isPolishToEnglish ? "Polish Word" : "English Word"}
+          </h2>
+          <p className="text-3xl font-bold text-gray-900 mb-6">
+            {questionText}
+          </p>
+        </div>
+
+        {!showAnswer ? (
+          <button
+            onClick={() => setShowAnswer(true)}
+            className="reveal-button mx-auto"
+          >
+            Reveal Answer
+          </button>
+        ) : (
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-sm text-gray-500 mb-2">
+                {isPolishToEnglish
+                  ? "English Translation"
+                  : "Polish Translation"}
+              </h3>
+              <p className="text-2xl font-semibold text-green-700 mb-6">
+                {answerText}
+              </p>
+            </div>
+
+            <div className="border-t pt-6">
+              <h3 className="text-sm text-gray-500 mb-3">Example Usage</h3>
+              <div className="space-y-2">
+                <p className="polish-text">🇵🇱 {polishExample}</p>
+                <p className="english-text">🇺🇸 {englishExample}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-between items-center">
+        <button
+          onClick={handlePrevious}
+          disabled={currentIndex === 0}
+          className="nav-button disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          ← Previous
+        </button>
+
+        <div className="text-center text-sm text-gray-600">
+          {currentIndex === currentItems.length - 1 ? (
+            <span className="text-blue-600 font-medium">
+              Next will restart with new words
+            </span>
+          ) : (
+            <span>
+              Progress:{" "}
+              {Math.round(((currentIndex + 1) / currentItems.length) * 100)}%
+            </span>
+          )}
+        </div>
+
+        <button onClick={handleNext} className="nav-button">
+          {currentIndex === currentItems.length - 1 ? "New Set" : "Next"} →
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default VocabularyQuiz;

@@ -1,0 +1,18 @@
+{
+  "name": "Polish Language Learning",
+  "short_name": "Polish Learn",
+  "description": "Learn Polish vocabulary, verb tenses, and grammatical cases",
+  "theme_color": "#1e40af",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
