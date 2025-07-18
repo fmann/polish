@@ -6,7 +6,7 @@ A Progressive Web App built with Vite and React for learning Polish vocabulary, 
 
 - **4 Learning Modes:**
   - Polish → English vocabulary
-  - English → Polish vocabulary  
+  - English → Polish vocabulary
   - Verb tenses (perfective vs imperfective aspects)
   - Grammatical cases (7 Polish cases)
 
@@ -68,3 +68,7 @@ Polish has 7 grammatical cases, each answering specific questions:
 - Handles Unicode escape sequences for Polish diacritics
 - Implements efficient data loading and caching strategies
 - Mobile-first responsive design with Tailwind CSS
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
