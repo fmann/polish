@@ -198,8 +198,8 @@ const TensesQuiz: React.FC = () => {
           <h2 className="text-sm text-gray-500 mb-2">
             {selectedTenseInfo?.label} ({selectedTenseInfo?.desc})
           </h2>
-          <div className="flex items-center justify-center">
-            <p className="text-3xl font-bold text-gray-900 mb-6">
+          <div className="flex items-center justify-center mb-6">
+            <p className="text-3xl font-bold text-gray-900">
               {polishText}
             </p>
             <SpeechButton

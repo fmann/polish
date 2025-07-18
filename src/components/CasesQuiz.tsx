@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useCasesData } from "../hooks/useData";
 import { decodePolishText, getRandomItems } from "../utils/textUtils";
 import { GrammaticalCase, CaseDescription } from "../types";
+import SpeechButton from "./SpeechButton";
 
 type CaseKey =
   | "nominative"
@@ -169,19 +170,33 @@ const CasesQuiz: React.FC = () => {
               <h3 className="text-sm text-gray-500 mb-2 capitalize">
                 {selectedCase} Form
               </h3>
-              <p className="text-3xl font-semibold text-green-700 mb-6">
-                {caseForm}
-              </p>
+              <div className="flex items-center justify-center mb-6">
+                <p className="text-3xl font-semibold text-green-700">
+                  {caseForm}
+                </p>
+                <SpeechButton
+                  text={caseForm}
+                  language="pl-PL"
+                  className="ml-3 text-2xl text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+                />
+              </div>
             </div>
 
             {example && (
               <div className="border-t pt-6">
                 <h3 className="text-sm text-gray-500 mb-3">Example Usage</h3>
                 <div className="space-y-2">
-                  <p className="polish-text">
-                    🇵🇱 {decodePolishText(example.pl)}
-                  </p>
-                  <p className="english-text">🇨🇦 {example.en}</p>
+                  <div className="flex items-center justify-center">
+                    <p className="polish-text">
+                      🇵🇱 {decodePolishText(example.pl)}
+                    </p>
+                    <SpeechButton
+                      text={decodePolishText(example.pl)}
+                      language="pl-PL"
+                      className="ml-2 text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+                    />
+                  </div>
+                  <p className="english-text text-center">🇨🇦 {example.en}</p>
                 </div>
               </div>
             )}
