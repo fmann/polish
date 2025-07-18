@@ -11,6 +11,7 @@ const TensesQuiz = () => {
     "perfectivePast",
     "imperfectivePast",
   ]);
+  const [activeTense, setActiveTense] = useState("perfectivePast");
 
   const tenseOptions = [
     {
@@ -55,8 +56,7 @@ const TensesQuiz = () => {
   }, [data]);
 
   const currentItem = currentItems[currentIndex];
-  const currentTense =
-    selectedTenses[Math.floor(Math.random() * selectedTenses.length)];
+  const currentTense = activeTense;
 
   const handleNext = () => {
     if (currentIndex < currentItems.length - 1) {
@@ -78,11 +78,9 @@ const TensesQuiz = () => {
   };
 
   const toggleTense = (tenseKey) => {
-    if (selectedTenses.includes(tenseKey)) {
-      if (selectedTenses.length > 1) {
-        setSelectedTenses(selectedTenses.filter((t) => t !== tenseKey));
-      }
-    } else {
+    setActiveTense(tenseKey);
+    // Also update selectedTenses for practice variety if needed
+    if (!selectedTenses.includes(tenseKey)) {
       setSelectedTenses([...selectedTenses, tenseKey]);
     }
   };
@@ -128,9 +126,7 @@ const TensesQuiz = () => {
     <div className="space-y-6">
       {/* Tense Selection */}
       <div className="quiz-card">
-        <h3 className="font-medium text-gray-900 mb-3">
-          Practice These Tenses:
-        </h3>
+        <h3 className="font-medium text-gray-900 mb-3">Select Active Tense:</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {tenseOptions.map((tense) => (
             <button
@@ -139,7 +135,7 @@ const TensesQuiz = () => {
               className={`
                 p-3 rounded-lg border text-left transition-colors
                 ${
-                  selectedTenses.includes(tense.key)
+                  activeTense === tense.key
                     ? "bg-blue-50 border-blue-300 text-blue-900"
                     : "bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100"
                 }
@@ -197,7 +193,9 @@ const TensesQuiz = () => {
                   <p className="text-sm text-blue-800">
                     {decodePolishText(
                       currentItem[
-                        currentTense.replace("imperfective", "perfective")
+                        currentTense.includes("imperfective")
+                          ? currentTense.replace("imperfective", "perfective")
+                          : currentTense
                       ]
                     )}
                   </p>
@@ -209,7 +207,9 @@ const TensesQuiz = () => {
                   <p className="text-sm text-green-800">
                     {decodePolishText(
                       currentItem[
-                        currentTense.replace("perfective", "imperfective")
+                        currentTense.includes("perfective")
+                          ? currentTense.replace("perfective", "imperfective")
+                          : currentTense
                       ]
                     )}
                   </p>

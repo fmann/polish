@@ -13,6 +13,10 @@ function App() {
         return <VocabularyQuiz direction="polish-to-english" />;
       case "english-to-polish":
         return <VocabularyQuiz direction="english-to-polish" />;
+      case "favorites":
+        return (
+          <VocabularyQuiz direction="polish-to-english" favoriteMode={true} />
+        );
       case "tenses":
         return <TensesQuiz />;
       case "cases":

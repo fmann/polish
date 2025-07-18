@@ -46,7 +46,7 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
       const updatedFavoriteIds = toggleFavorite(currentItem.id);
       const updatedFavorites = data.filter(word => updatedFavoriteIds.includes(word.id));
       setFavorites(updatedFavorites);
-
+      
       // If we're in favorite mode and this was the last favorite, update items
       if (favoriteMode && !isFavorite(currentItem.id)) {
         const remainingFavorites = getFavoriteWords(data);
@@ -91,10 +91,10 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
   };
 
   // Derive values from current item
-  const questionText = currentItem
+  const questionText = currentItem 
     ? (isPolishToEnglish ? decodePolishText(currentItem.word) : currentItem.translation)
     : "";
-  const answerText = currentItem
+  const answerText = currentItem 
     ? (isPolishToEnglish ? currentItem.translation : decodePolishText(currentItem.word))
     : "";
   const polishExample = currentItem ? decodePolishText(currentItem.exampleSentence) : "";
@@ -131,7 +131,7 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
             <div>
               <p className="text-gray-600 font-medium">No favorite words yet!</p>
               <p className="text-sm text-gray-500 mt-2">
-                Start by marking some vocabulary words as favorites using the star icon,
+                Start by marking some vocabulary words as favorites using the star icon, 
                 then come back here to practice them.
               </p>
             </div>
@@ -162,15 +162,15 @@ const VocabularyQuiz = ({ direction, favoriteMode = false }) => {
         <button
           onClick={handleToggleFavorite}
           className={`absolute top-4 left-4 text-2xl transition-colors ${
-            isFavorite(currentItem.id)
-              ? 'text-yellow-500 hover:text-yellow-600'
-              : 'text-gray-400 hover:text-gray-500'
+            isFavorite(currentItem.id) 
+              ? 'text-yellow-400 hover:text-yellow-500' 
+              : 'text-gray-300 hover:text-yellow-400'
           }`}
           title={isFavorite(currentItem.id) ? 'Remove from favorites' : 'Add to favorites'}
         >
-          {isFavorite(currentItem.id) ? '★' : '☆'}
+          ⭐
         </button>
-
+        
         <div className="mb-8">
           <h2 className="text-sm text-gray-500 mb-2">
             {isPolishToEnglish ? "Polish Word" : "English Word"}
