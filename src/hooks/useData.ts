@@ -15,7 +15,7 @@ export const useVocabularyData = (): DataHookResult<VocabularyWord> => {
   useEffect(() => {
     const loadData = async (): Promise<void> => {
       try {
-        const response = await fetch("/data/1000-words.json");
+        const response = await fetch("./data/1000-words.json");
         if (!response.ok) throw new Error("Failed to load vocabulary data");
         const jsonData = await response.text();
         // Parse as JavaScript object since it uses unquoted keys
@@ -42,7 +42,7 @@ export const useTensesData = (): DataHookResult<TenseConjugation> => {
   useEffect(() => {
     const loadData = async (): Promise<void> => {
       try {
-        const response = await fetch("/data/tenses.json");
+        const response = await fetch("./data/tenses.json");
         if (!response.ok) throw new Error("Failed to load tenses data");
         const jsonData = await response.text();
         const parsedData = eval(`(${jsonData})`) as TenseConjugation[];
@@ -77,8 +77,8 @@ export const useCasesData = (): CasesDataResult => {
     const loadData = async (): Promise<void> => {
       try {
         const [casesResponse, descriptionsResponse] = await Promise.all([
-          fetch("/data/cases.json"),
-          fetch("/data/case-descriptions.json"),
+          fetch("./data/cases.json"),
+          fetch("./data/case-descriptions.json"),
         ]);
 
         if (!casesResponse.ok || !descriptionsResponse.ok) {
