@@ -1,33 +1,31 @@
 import React from "react";
-
-export type ViewType =
-  | "polish-to-english"
-  | "english-to-polish"
-  | "favorites"
-  | "tenses"
-  | "cases";
-
-interface NavigationProps {
-  currentView: ViewType;
-  onViewChange: (view: ViewType) => void;
-}
+import { NavLink } from "react-router-dom";
+import { ViewType } from "../types";
 
 interface NavItem {
   id: ViewType;
   label: string;
   icon: string;
+  path: string;
 }
 
-const Navigation: React.FC<NavigationProps> = ({
-  currentView,
-  onViewChange,
-}) => {
+const Navigation: React.FC = () => {
   const navItems: NavItem[] = [
-    { id: "polish-to-english", label: "Polish → English", icon: "🇵🇱→🇺🇸" },
-    { id: "english-to-polish", label: "English → Polish", icon: "🇺🇸→🇵🇱" },
-    { id: "favorites", label: "Favourites", icon: "⭐" },
-    { id: "tenses", label: "Tenses", icon: "⏰" },
-    { id: "cases", label: "Cases", icon: "📝" },
+    {
+      id: "polish-to-english",
+      label: "Polish → English",
+      icon: "🇵🇱→🇺🇸",
+      path: "/polish-to-english",
+    },
+    {
+      id: "english-to-polish",
+      label: "English → Polish",
+      icon: "🇺🇸→🇵🇱",
+      path: "/english-to-polish",
+    },
+    { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },
+    { id: "tenses", label: "Tenses", icon: "⏰", path: "/tenses" },
+    { id: "cases", label: "Cases", icon: "📝", path: "/cases" },
   ];
 
   return (
@@ -35,13 +33,13 @@ const Navigation: React.FC<NavigationProps> = ({
       <div className="max-w-4xl mx-auto px-4">
         <div className="flex space-x-1 overflow-x-auto py-2">
           {navItems.map((item) => (
-            <button
+            <NavLink
               key={item.id}
-              onClick={() => onViewChange(item.id)}
-              className={`
+              to={item.path}
+              className={({ isActive }) => `
                 px-4 py-3 rounded-lg font-medium transition-colors whitespace-nowrap
                 ${
-                  currentView === item.id
+                  isActive
                     ? "bg-blue-600 text-white"
                     : "text-gray-700 hover:bg-gray-100"
                 }
@@ -49,7 +47,7 @@ const Navigation: React.FC<NavigationProps> = ({
             >
               <span className="mr-2">{item.icon}</span>
               {item.label}
-            </button>
+            </NavLink>
           ))}
         </div>
       </div>

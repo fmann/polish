@@ -50,6 +50,13 @@ export interface CaseDescription {
 
 export type QuizDirection = "polish-to-english" | "english-to-polish";
 
+export type ViewType =
+  | "polish-to-english"
+  | "english-to-polish"
+  | "favorites"
+  | "tenses"
+  | "cases";
+
 export type TenseKey =
   | "perfectivePast"
   | "imperfectivePast"
