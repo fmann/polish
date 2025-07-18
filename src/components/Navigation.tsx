@@ -14,13 +14,13 @@ const Navigation: React.FC = () => {
     {
       id: "polish-to-english",
       label: "Polish → English",
-      icon: "🇵🇱→🇺🇸",
+      icon: "🇵🇱→🇨🇦",
       path: "/polish-to-english",
     },
     {
       id: "english-to-polish",
       label: "English → Polish",
-      icon: "🇺🇸→🇵🇱",
+      icon: "🇨🇦→🇵🇱",
       path: "/english-to-polish",
     },
     { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },

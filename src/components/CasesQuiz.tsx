@@ -181,7 +181,7 @@ const CasesQuiz: React.FC = () => {
                   <p className="polish-text">
                     🇵🇱 {decodePolishText(example.pl)}
                   </p>
-                  <p className="english-text">🇺🇸 {example.en}</p>
+                  <p className="english-text">🇨🇦 {example.en}</p>
                 </div>
               </div>
             )}

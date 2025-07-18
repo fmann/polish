@@ -201,10 +201,8 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
           <h2 className="text-sm text-gray-500 mb-2">
             {isPolishToEnglish ? "Polish Word" : "English Word"}
           </h2>
-          <div className="flex items-center justify-center">
-            <p className="text-3xl font-bold text-gray-900 mb-6">
-              {questionText}
-            </p>
+          <div className="flex items-center justify-center mb-6">
+            <p className="text-3xl font-bold text-gray-900">{questionText}</p>
             {isPolishToEnglish && (
               <SpeechButton
                 text={questionText}
@@ -247,7 +245,7 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
             <div className="border-t pt-6">
               <h3 className="text-sm text-gray-500 mb-3">Example Usage</h3>
               <div className="space-y-2">
-                <div className="flex items-center">
+                <div className="flex items-center justify-center">
                   <p className="polish-text">🇵🇱 {polishExample}</p>
                   <SpeechButton
                     text={polishExample}
@@ -255,7 +253,7 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
                     className="ml-2 text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
                   />
                 </div>
-                <p className="english-text">🇺🇸 {englishExample}</p>
+                <p className="english-text text-center">🇨🇦 {englishExample}</p>
               </div>
             </div>
           </div>
