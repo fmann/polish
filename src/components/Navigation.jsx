@@ -4,9 +4,9 @@ const Navigation = ({ currentView, onViewChange }) => {
   const navItems = [
     { id: "polish-to-english", label: "Polish → English", icon: "🇵🇱→🇺🇸" },
     { id: "english-to-polish", label: "English → Polish", icon: "🇺🇸→🇵🇱" },
-    { id: "favorites", label: "Practice Favourites", icon: "⭐" },
-    { id: "tenses", label: "Verb Tenses", icon: "⏰" },
-    { id: "cases", label: "Grammatical Cases", icon: "📝" },
+    { id: "favorites", label: "Favourites", icon: "⭐" },
+    { id: "tenses", label: "Tenses", icon: "⏰" },
+    { id: "cases", label: "Cases", icon: "📝" },
   ];
 
   return (
