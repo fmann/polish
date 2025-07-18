@@ -2,19 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useTensesData } from "../hooks/useData";
 import { decodePolishText, getRandomItems } from "../utils/textUtils";
 import SpeechButton from "./SpeechButton";
+import { TenseConjugation, TenseKey } from "../types";
 
-const TensesQuiz = () => {
+interface TenseOption {
+  key: TenseKey;
+  label: string;
+  desc: string;
+}
+
+const TensesQuiz: React.FC = () => {
   const { data, loading, error } = useTensesData();
-  const [currentItems, setCurrentItems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [selectedTenses, setSelectedTenses] = useState([
+  const [currentItems, setCurrentItems] = useState<TenseConjugation[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [showAnswer, setShowAnswer] = useState<boolean>(false);
+  const [selectedTenses, setSelectedTenses] = useState<TenseKey[]>([
     "perfectivePast",
     "imperfectivePast",
   ]);
-  const [activeTense, setActiveTense] = useState("perfectivePast");
+  const [activeTense, setActiveTense] = useState<TenseKey>("perfectivePast");
 
-  const tenseOptions = [
+  const tenseOptions: TenseOption[] = [
     {
       key: "perfectivePast",
       label: "Perfective Past",
@@ -59,7 +66,37 @@ const TensesQuiz = () => {
   const currentItem = currentItems[currentIndex];
   const currentTense = activeTense;
 
-  const handleNext = () => {
+  // Helper function to safely get tense value
+  const getTenseValue = (
+    item: TenseConjugation,
+    tenseKey: TenseKey
+  ): string => {
+    return item[tenseKey];
+  };
+
+  // Helper function to get English equivalent key
+  const getEnglishTenseKey = (tenseKey: TenseKey): keyof TenseConjugation => {
+    const mapping: Record<TenseKey, keyof TenseConjugation> = {
+      perfectivePast: "englishPerfectivePast",
+      imperfectivePast: "englishImperfectivePast",
+      perfectivePresent: "englishPerfectivePresent",
+      imperfectivePresent: "englishImperfectivePresent",
+      perfectiveFuture: "englishPerfectiveFuture",
+      imperfectiveFuture: "englishImperfectiveFuture",
+    };
+    return mapping[tenseKey];
+  };
+
+  // Helper function to get opposite aspect tense
+  const getOppositeAspectTense = (tenseKey: TenseKey): TenseKey => {
+    if (tenseKey.includes("imperfective")) {
+      return tenseKey.replace("imperfective", "perfective") as TenseKey;
+    } else {
+      return tenseKey.replace("perfective", "imperfective") as TenseKey;
+    }
+  };
+
+  const handleNext = (): void => {
     if (currentIndex < currentItems.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowAnswer(false);
@@ -71,14 +108,14 @@ const TensesQuiz = () => {
     }
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setShowAnswer(false);
     }
   };
 
-  const toggleTense = (tenseKey) => {
+  const toggleTense = (tenseKey: TenseKey): void => {
     setActiveTense(tenseKey);
     // Also update selectedTenses for practice variety if needed
     if (!selectedTenses.includes(tenseKey)) {
@@ -117,10 +154,8 @@ const TensesQuiz = () => {
   }
 
   const selectedTenseInfo = tenseOptions.find((t) => t.key === currentTense);
-  const polishText = decodePolishText(currentItem[currentTense]);
-  const englishKey = currentTense
-    .replace("perfective", "englishPerfective")
-    .replace("imperfective", "englishImperfective");
+  const polishText = decodePolishText(getTenseValue(currentItem, currentTense));
+  const englishKey = getEnglishTenseKey(currentTense);
   const englishText = currentItem[englishKey];
 
   return (
@@ -203,20 +238,22 @@ const TensesQuiz = () => {
                   <div className="flex items-center">
                     <p className="text-sm text-blue-800">
                       {decodePolishText(
-                        currentItem[
+                        getTenseValue(
+                          currentItem,
                           currentTense.includes("imperfective")
-                            ? currentTense.replace("imperfective", "perfective")
+                            ? getOppositeAspectTense(currentTense)
                             : currentTense
-                        ]
+                        )
                       )}
                     </p>
                     <SpeechButton
                       text={decodePolishText(
-                        currentItem[
+                        getTenseValue(
+                          currentItem,
                           currentTense.includes("imperfective")
-                            ? currentTense.replace("imperfective", "perfective")
+                            ? getOppositeAspectTense(currentTense)
                             : currentTense
-                        ]
+                        )
                       )}
                       language="pl-PL"
                       className="ml-2 text-blue-500 hover:text-blue-700 transition-colors cursor-pointer text-sm"
@@ -230,20 +267,22 @@ const TensesQuiz = () => {
                   <div className="flex items-center">
                     <p className="text-sm text-green-800">
                       {decodePolishText(
-                        currentItem[
+                        getTenseValue(
+                          currentItem,
                           currentTense.includes("perfective")
-                            ? currentTense.replace("perfective", "imperfective")
+                            ? getOppositeAspectTense(currentTense)
                             : currentTense
-                        ]
+                        )
                       )}
                     </p>
                     <SpeechButton
                       text={decodePolishText(
-                        currentItem[
+                        getTenseValue(
+                          currentItem,
                           currentTense.includes("perfective")
-                            ? currentTense.replace("perfective", "imperfective")
+                            ? getOppositeAspectTense(currentTense)
                             : currentTense
-                        ]
+                        )
                       )}
                       language="pl-PL"
                       className="ml-2 text-green-500 hover:text-green-700 transition-colors cursor-pointer text-sm"

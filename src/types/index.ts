@@ -34,11 +34,26 @@ export interface CaseExample {
   vocative: string;
 }
 
+export interface CaseExampleSentence {
+  pl: string;
+  en: string;
+}
+
+export interface CaseExamples {
+  nominative: CaseExampleSentence;
+  genitive: CaseExampleSentence;
+  dative: CaseExampleSentence;
+  accusative: CaseExampleSentence;
+  instrumental: CaseExampleSentence;
+  locative: CaseExampleSentence;
+  vocative: CaseExampleSentence;
+}
+
 export interface GrammaticalCase {
   id: number;
   base: CaseExample;
   translation: string;
-  examples: string[];
+  examples: CaseExamples;
 }
 
 export interface CaseDescription {

@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useCasesData } from "../hooks/useData";
 import { decodePolishText, getRandomItems } from "../utils/textUtils";
+import { GrammaticalCase, CaseDescription } from "../types";
 
-const CasesQuiz = () => {
+type CaseKey =
+  | "nominative"
+  | "genitive"
+  | "dative"
+  | "accusative"
+  | "instrumental"
+  | "locative"
+  | "vocative";
+
+const CasesQuiz: React.FC = () => {
   const { data, descriptions, loading, error } = useCasesData();
-  const [currentItems, setCurrentItems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [selectedCase, setSelectedCase] = useState("nominative");
+  const [currentItems, setCurrentItems] = useState<GrammaticalCase[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [showAnswer, setShowAnswer] = useState<boolean>(false);
+  const [selectedCase, setSelectedCase] = useState<CaseKey>("nominative");
 
-  const caseOptions = [
+  const caseOptions: CaseKey[] = [
     "nominative",
     "genitive",
     "dative",
@@ -30,10 +40,10 @@ const CasesQuiz = () => {
 
   const currentItem = currentItems[currentIndex];
   const currentDescription = descriptions.find(
-    (d) => d.name.toLowerCase() === selectedCase.toLowerCase()
+    (d) => d.case.toLowerCase() === selectedCase.toLowerCase()
   );
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (currentIndex < currentItems.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setShowAnswer(false);
@@ -45,7 +55,7 @@ const CasesQuiz = () => {
     }
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setShowAnswer(false);
@@ -116,7 +126,7 @@ const CasesQuiz = () => {
         {currentDescription && (
           <div className="mt-3 p-3 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-700">
-              <span className="font-medium">{currentDescription.name}:</span>{" "}
+              <span className="font-medium">{currentDescription.case}:</span>{" "}
               {currentDescription.description}
             </p>
           </div>

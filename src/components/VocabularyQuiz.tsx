@@ -7,6 +7,7 @@ import {
   isFavorite,
 } from "../utils/favorites";
 import { VocabularyWord, QuizDirection } from "../types";
+import SpeechButton from "./SpeechButton";
 
 interface VocabularyQuizProps {
   direction: QuizDirection;
@@ -200,9 +201,18 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
           <h2 className="text-sm text-gray-500 mb-2">
             {isPolishToEnglish ? "Polish Word" : "English Word"}
           </h2>
-          <p className="text-3xl font-bold text-gray-900 mb-6">
-            {questionText}
-          </p>
+          <div className="flex items-center justify-center">
+            <p className="text-3xl font-bold text-gray-900 mb-6">
+              {questionText}
+            </p>
+            {isPolishToEnglish && (
+              <SpeechButton
+                text={questionText}
+                language="pl-PL"
+                className="ml-3 text-2xl text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+              />
+            )}
+          </div>
         </div>
 
         {!showAnswer ? (
@@ -220,15 +230,31 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
                   ? "English Translation"
                   : "Polish Translation"}
               </h3>
-              <p className="text-2xl font-semibold text-green-700 mb-6">
-                {answerText}
-              </p>
+              <div className="flex items-center justify-center">
+                <p className="text-2xl font-semibold text-green-700 mb-6">
+                  {answerText}
+                </p>
+                {!isPolishToEnglish && (
+                  <SpeechButton
+                    text={answerText}
+                    language="pl-PL"
+                    className="ml-3 text-xl text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+                  />
+                )}
+              </div>
             </div>
 
             <div className="border-t pt-6">
               <h3 className="text-sm text-gray-500 mb-3">Example Usage</h3>
               <div className="space-y-2">
-                <p className="polish-text">🇵🇱 {polishExample}</p>
+                <div className="flex items-center">
+                  <p className="polish-text">🇵🇱 {polishExample}</p>
+                  <SpeechButton
+                    text={polishExample}
+                    language="pl-PL"
+                    className="ml-2 text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+                  />
+                </div>
                 <p className="english-text">🇺🇸 {englishExample}</p>
               </div>
             </div>
