@@ -6,11 +6,11 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/polish/",
+  "start_url": "/polish/",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/polish/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }
