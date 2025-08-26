@@ -4,6 +4,8 @@ import Navigation from "./components/Navigation";
 import VocabularyQuiz from "./components/VocabularyQuiz";
 import TensesQuiz from "./components/TensesQuiz";
 import CasesQuiz from "./components/CasesQuiz";
+import DatesQuiz from "./components/DatesQuiz";
+import NumbersQuiz from "./components/NumbersQuiz";
 
 const App: React.FC = () => {
   return (
@@ -40,6 +42,8 @@ const App: React.FC = () => {
               />
             }
           />
+          <Route path="/numbers" element={<NumbersQuiz />} />
+          <Route path="/dates" element={<DatesQuiz />} />
           <Route path="/tenses" element={<TensesQuiz />} />
           <Route path="/cases" element={<CasesQuiz />} />
           <Route

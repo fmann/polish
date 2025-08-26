@@ -13,19 +13,21 @@ const Navigation: React.FC = () => {
   const navItems: NavItem[] = [
     {
       id: "polish-to-english",
-      label: "Polish → English",
-      icon: "🇵🇱→🇨🇦",
+      label: "",
+      icon: "PL 🇵🇱→🇨🇦 EN",
       path: "/polish-to-english",
     },
     {
       id: "english-to-polish",
-      label: "English → Polish",
-      icon: "🇨🇦→🇵🇱",
+      label: "",
+      icon: "EN 🇨🇦→🇵🇱 PL",
       path: "/english-to-polish",
     },
-    { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },
+    { id: "numbers", label: "Numbers", icon: "🔢", path: "/numbers" },
+    { id: "dates", label: "Dates", icon: "📅", path: "/dates" },
     { id: "tenses", label: "Tenses", icon: "⏰", path: "/tenses" },
     { id: "cases", label: "Cases", icon: "📝", path: "/cases" },
+    { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },
   ];
 
   return (

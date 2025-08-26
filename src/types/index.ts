@@ -61,12 +61,31 @@ export interface CaseDescription {
   description: string;
 }
 
+export interface DateItem {
+  id: number;
+  polish: string;
+  english: string;
+  dayOfWeek: string;
+  dayNumber: number;
+  month: string;
+}
+
+export interface NumberItem {
+  id: number;
+  number: number;
+  polish: string;
+  english: string;
+  category: string;
+}
+
 export type QuizDirection = "polish-to-english" | "english-to-polish";
 
 export type ViewType =
   | "polish-to-english"
   | "english-to-polish"
   | "favorites"
+  | "numbers"
+  | "dates"
   | "tenses"
   | "cases";
 

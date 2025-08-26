@@ -79,7 +79,10 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({
         } else {
           console.log("No specific Polish voice found, using default");
           // List available voices for debugging
-          console.log("Available voices:", voices.map(v => `${v.name} (${v.lang})`));
+          console.log(
+            "Available voices:",
+            voices.map((v) => `${v.name} (${v.lang})`)
+          );
         }
       }
 
@@ -103,9 +106,13 @@ const SpeechButton: React.FC<SpeechButtonProps> = ({
     const voices = window.speechSynthesis.getVoices();
     if (voices.length === 0) {
       // Wait for voices to load
-      window.speechSynthesis.addEventListener('voiceschanged', () => {
-        speakWithVoice();
-      }, { once: true });
+      window.speechSynthesis.addEventListener(
+        "voiceschanged",
+        () => {
+          speakWithVoice();
+        },
+        { once: true }
+      );
     } else {
       speakWithVoice();
     }

@@ -1,0 +1,843 @@
+
+[{
+            id: 1,
+            base: {
+                nominative: "kot",
+                genitive: "kota",
+                dative: "kotu",
+                accusative: "kota",
+                instrumental: "kotem",
+                locative: "kocie",
+                vocative: "kocie"
+            },
+            translation: "cat",
+            examples: {
+                nominative: {
+                    pl: "Ten kot jest czarny.",
+                    en: "This cat is black."
+                },
+                genitive: {
+                    pl: "Nie widzę kota.",
+                    en: "I don't see the cat."
+                },
+                dative: {
+                    pl: "Daję jedzenie kotu.",
+                    en: "I'm giving food to the cat."
+                },
+                accusative: {
+                    pl: "Widzę kota.",
+                    en: "I see the cat."
+                },
+                instrumental: {
+                    pl: "Bawię się z kotem.",
+                    en: "I'm playing with the cat."
+                },
+                locative: {
+                    pl: "M\xf3wię o kocie.",
+                    en: "I'm talking about the cat."
+                },
+                vocative: {
+                    pl: "Chodź tu, kocie!",
+                    en: "Come here, cat!"
+                }
+            }
+        }, {
+            id: 2,
+            base: {
+                nominative: "pies",
+                genitive: "psa",
+                dative: "psu",
+                accusative: "psa",
+                instrumental: "psem",
+                locative: "psie",
+                vocative: "psie"
+            },
+            translation: "dog",
+            examples: {
+                nominative: {
+                    pl: "Ten pies jest duży.",
+                    en: "This dog is big."
+                },
+                genitive: {
+                    pl: "Nie ma psa w domu.",
+                    en: "The dog is not at home."
+                },
+                dative: {
+                    pl: "Daję kość psu.",
+                    en: "I'm giving a bone to the dog."
+                },
+                accusative: {
+                    pl: "Widzę psa.",
+                    en: "I see the dog."
+                },
+                instrumental: {
+                    pl: "Idę z psem na spacer.",
+                    en: "I'm going for a walk with the dog."
+                },
+                locative: {
+                    pl: "Myślę o psie.",
+                    en: "I'm thinking about the dog."
+                },
+                vocative: {
+                    pl: "Chodź tu, psie!",
+                    en: "Come here, dog!"
+                }
+            }
+        }, {
+            id: 3,
+            base: {
+                nominative: "książka",
+                genitive: "książki",
+                dative: "książce",
+                accusative: "książkę",
+                instrumental: "książką",
+                locative: "książce",
+                vocative: "książko"
+            },
+            translation: "book",
+            examples: {
+                nominative: {
+                    pl: "Ta książka jest interesująca.",
+                    en: "This book is interesting."
+                },
+                genitive: {
+                    pl: "Nie mam tej książki.",
+                    en: "I don't have this book."
+                },
+                dative: {
+                    pl: "Przyglądam się książce.",
+                    en: "I'm looking at the book."
+                },
+                accusative: {
+                    pl: "Czytam książkę.",
+                    en: "I'm reading the book."
+                },
+                instrumental: {
+                    pl: "Interesuję się tą książką.",
+                    en: "I'm interested in this book."
+                },
+                locative: {
+                    pl: "M\xf3wię o książce.",
+                    en: "I'm talking about the book."
+                },
+                vocative: {
+                    pl: "O książko, ile wiedzy w tobie jest!",
+                    en: "Oh book, how much knowledge you contain!"
+                }
+            }
+        }, {
+            id: 4,
+            base: {
+                nominative: "student",
+                genitive: "studenta",
+                dative: "studentowi",
+                accusative: "studenta",
+                instrumental: "studentem",
+                locative: "studencie",
+                vocative: "studencie"
+            },
+            translation: "student",
+            examples: {
+                nominative: {
+                    pl: "Ten student jest pracowity.",
+                    en: "This student is hardworking."
+                },
+                genitive: {
+                    pl: "Nie ma studenta na zajęciach.",
+                    en: "The student is not in class."
+                },
+                dative: {
+                    pl: "Pomagam studentowi w nauce.",
+                    en: "I'm helping the student with studying."
+                },
+                accusative: {
+                    pl: "Widzę studenta w bibliotece.",
+                    en: "I see the student in the library."
+                },
+                instrumental: {
+                    pl: "Rozmawiam ze studentem.",
+                    en: "I'm talking with the student."
+                },
+                locative: {
+                    pl: "Myślę o studencie.",
+                    en: "I'm thinking about the student."
+                },
+                vocative: {
+                    pl: "Drogi studencie!",
+                    en: "Dear student!"
+                }
+            }
+        }, {
+            id: 5,
+            base: {
+                nominative: "telefon",
+                genitive: "telefonu",
+                dative: "telefonowi",
+                accusative: "telefon",
+                instrumental: "telefonem",
+                locative: "telefonie",
+                vocative: "telefonie"
+            },
+            translation: "phone",
+            examples: {
+                nominative: {
+                    pl: "Ten telefon jest nowy.",
+                    en: "This phone is new."
+                },
+                genitive: {
+                    pl: "Nie mam telefonu przy sobie.",
+                    en: "I don't have my phone with me."
+                },
+                dative: {
+                    pl: "Przyglądam się telefonowi.",
+                    en: "I'm looking at the phone."
+                },
+                accusative: {
+                    pl: "Kupuję nowy telefon.",
+                    en: "I'm buying a new phone."
+                },
+                instrumental: {
+                    pl: "Robię zdjęcia telefonem.",
+                    en: "I'm taking pictures with my phone."
+                },
+                locative: {
+                    pl: "Rozmawiamy o telefonie.",
+                    en: "We're talking about the phone."
+                },
+                vocative: {
+                    pl: "O telefonie, czemu nie działasz!",
+                    en: "Oh phone, why aren't you working!"
+                }
+            }
+        }, {
+            id: 6,
+            base: {
+                nominative: "mama",
+                genitive: "mamy",
+                dative: "mamie",
+                accusative: "mamę",
+                instrumental: "mamą",
+                locative: "mamie",
+                vocative: "mamo"
+            },
+            translation: "mom",
+            examples: {
+                nominative: {
+                    pl: "Moja mama jest najlepsza.",
+                    en: "My mom is the best."
+                },
+                genitive: {
+                    pl: "Nie ma mamy w domu.",
+                    en: "Mom is not at home."
+                },
+                dative: {
+                    pl: "Daję prezent mamie.",
+                    en: "I'm giving a gift to mom."
+                },
+                accusative: {
+                    pl: "Kocham moją mamę.",
+                    en: "I love my mom."
+                },
+                instrumental: {
+                    pl: "Idę z mamą na zakupy.",
+                    en: "I'm going shopping with mom."
+                },
+                locative: {
+                    pl: "Myślę o mamie.",
+                    en: "I'm thinking about mom."
+                },
+                vocative: {
+                    pl: "Mamo, kocham cię!",
+                    en: "Mom, I love you!"
+                }
+            }
+        }, {
+            id: 7,
+            base: {
+                nominative: "dom",
+                genitive: "domu",
+                dative: "domowi",
+                accusative: "dom",
+                instrumental: "domem",
+                locative: "domu",
+                vocative: "domu"
+            },
+            translation: "house",
+            examples: {
+                nominative: {
+                    pl: "Ten dom jest duży.",
+                    en: "This house is big."
+                },
+                genitive: {
+                    pl: "Nie widzę domu z tej odległości.",
+                    en: "I can't see the house from this distance."
+                },
+                dative: {
+                    pl: "Przyglądam się domowi.",
+                    en: "I'm looking at the house."
+                },
+                accusative: {
+                    pl: "Buduję nowy dom.",
+                    en: "I'm building a new house."
+                },
+                instrumental: {
+                    pl: "Zajmuję się domem.",
+                    en: "I'm taking care of the house."
+                },
+                locative: {
+                    pl: "Mieszkam w tym domu.",
+                    en: "I live in this house."
+                },
+                vocative: {
+                    pl: "O domu rodzinny!",
+                    en: "Oh family home!"
+                }
+            }
+        }, {
+            id: 8,
+            base: {
+                nominative: "komputer",
+                genitive: "komputera",
+                dative: "komputerowi",
+                accusative: "komputer",
+                instrumental: "komputerem",
+                locative: "komputerze",
+                vocative: "komputerze"
+            },
+            translation: "computer",
+            examples: {
+                nominative: {
+                    pl: "Ten komputer jest szybki.",
+                    en: "This computer is fast."
+                },
+                genitive: {
+                    pl: "Nie mam komputera.",
+                    en: "I don't have a computer."
+                },
+                dative: {
+                    pl: "Przyglądam się komputerowi.",
+                    en: "I'm looking at the computer."
+                },
+                accusative: {
+                    pl: "Naprawiam komputer.",
+                    en: "I'm fixing the computer."
+                },
+                instrumental: {
+                    pl: "Pracuję komputerem.",
+                    en: "I'm working with the computer."
+                },
+                locative: {
+                    pl: "M\xf3wię o komputerze.",
+                    en: "I'm talking about the computer."
+                },
+                vocative: {
+                    pl: "O komputerze, nie zawiedź mnie!",
+                    en: "Oh computer, don't fail me!"
+                }
+            }
+        }, {
+            id: 9,
+            base: {
+                nominative: "nauczyciel",
+                genitive: "nauczyciela",
+                dative: "nauczycielowi",
+                accusative: "nauczyciela",
+                instrumental: "nauczycielem",
+                locative: "nauczycielu",
+                vocative: "nauczycielu"
+            },
+            translation: "teacher",
+            examples: {
+                nominative: {
+                    pl: "Nauczyciel jest bardzo wymagający.",
+                    en: "The teacher is very demanding."
+                },
+                genitive: {
+                    pl: "Nie ma nauczyciela w klasie.",
+                    en: "The teacher is not in the classroom."
+                },
+                dative: {
+                    pl: "Daję książkę nauczycielowi.",
+                    en: "I'm giving the book to the teacher."
+                },
+                accusative: {
+                    pl: "Widzę nauczyciela w szkole.",
+                    en: "I see the teacher at school."
+                },
+                instrumental: {
+                    pl: "Rozmawiam z nauczycielem.",
+                    en: "I'm talking with the teacher."
+                },
+                locative: {
+                    pl: "Myślę o nauczycielu.",
+                    en: "I'm thinking about the teacher."
+                },
+                vocative: {
+                    pl: "Drogi nauczycielu!",
+                    en: "Dear teacher!"
+                }
+            }
+        }, {
+            id: 10,
+            base: {
+                nominative: "miasto",
+                genitive: "miasta",
+                dative: "miastu",
+                accusative: "miasto",
+                instrumental: "miastem",
+                locative: "mieście",
+                vocative: "miasto"
+            },
+            translation: "city",
+            examples: {
+                nominative: {
+                    pl: "To miasto jest piękne.",
+                    en: "This city is beautiful."
+                },
+                genitive: {
+                    pl: "Nie znam tego miasta.",
+                    en: "I don't know this city."
+                },
+                dative: {
+                    pl: "Przyglądam się miastu.",
+                    en: "I'm looking at the city."
+                },
+                accusative: {
+                    pl: "Zwiedzam miasto.",
+                    en: "I'm visiting the city."
+                },
+                instrumental: {
+                    pl: "Zachwycam się miastem.",
+                    en: "I'm amazed by the city."
+                },
+                locative: {
+                    pl: "Mieszkam w tym mieście.",
+                    en: "I live in this city."
+                },
+                vocative: {
+                    pl: "O miasto moje!",
+                    en: "Oh my city!"
+                }
+            }
+        }, {
+            id: 11,
+            base: {
+                nominative: "dziecko",
+                genitive: "dziecka",
+                dative: "dziecku",
+                accusative: "dziecko",
+                instrumental: "dzieckiem",
+                locative: "dziecku",
+                vocative: "dziecko"
+            },
+            translation: "child",
+            examples: {
+                nominative: {
+                    pl: "To dziecko jest urocze.",
+                    en: "This child is cute."
+                },
+                genitive: {
+                    pl: "Nie ma dziecka w pokoju.",
+                    en: "The child is not in the room."
+                },
+                dative: {
+                    pl: "Daję zabawkę dziecku.",
+                    en: "I'm giving a toy to the child."
+                },
+                accusative: {
+                    pl: "Widzę dziecko.",
+                    en: "I see the child."
+                },
+                instrumental: {
+                    pl: "Bawię się z dzieckiem.",
+                    en: "I'm playing with the child."
+                },
+                locative: {
+                    pl: "M\xf3wię o dziecku.",
+                    en: "I'm talking about the child."
+                },
+                vocative: {
+                    pl: "Dziecko, chodź tutaj!",
+                    en: "Child, come here!"
+                }
+            }
+        }, {
+            id: 12,
+            base: {
+                nominative: "rower",
+                genitive: "roweru",
+                dative: "rowerowi",
+                accusative: "rower",
+                instrumental: "rowerem",
+                locative: "rowerze",
+                vocative: "rowerze"
+            },
+            translation: "bicycle",
+            examples: {
+                nominative: {
+                    pl: "Ten rower jest szybki.",
+                    en: "This bicycle is fast."
+                },
+                genitive: {
+                    pl: "Nie widzę roweru.",
+                    en: "I don't see the bicycle."
+                },
+                dative: {
+                    pl: "Przyglądam się rowerowi.",
+                    en: "I'm looking at the bicycle."
+                },
+                accusative: {
+                    pl: "Kupuję nowy rower.",
+                    en: "I'm buying a new bicycle."
+                },
+                instrumental: {
+                    pl: "Jadę rowerem.",
+                    en: "I'm riding a bicycle."
+                },
+                locative: {
+                    pl: "Myślę o rowerze.",
+                    en: "I'm thinking about the bicycle."
+                },
+                vocative: {
+                    pl: "O rowerze, jedź szybciej!",
+                    en: "Oh bicycle, go faster!"
+                }
+            }
+        }, {
+            id: 13,
+            base: {
+                nominative: "kawa",
+                genitive: "kawy",
+                dative: "kawie",
+                accusative: "kawę",
+                instrumental: "kawą",
+                locative: "kawie",
+                vocative: "kawo"
+            },
+            translation: "coffee",
+            examples: {
+                nominative: {
+                    pl: "Ta kawa jest gorąca.",
+                    en: "This coffee is hot."
+                },
+                genitive: {
+                    pl: "Nie piję kawy wieczorem.",
+                    en: "I don't drink coffee in the evening."
+                },
+                dative: {
+                    pl: "Daję mleko kawie.",
+                    en: "I'm adding milk to the coffee."
+                },
+                accusative: {
+                    pl: "Piję kawę.",
+                    en: "I'm drinking coffee."
+                },
+                instrumental: {
+                    pl: "Delektuję się kawą.",
+                    en: "I'm savoring the coffee."
+                },
+                locative: {
+                    pl: "M\xf3wimy o kawie.",
+                    en: "We're talking about coffee."
+                },
+                vocative: {
+                    pl: "O kawa poranna!",
+                    en: "Oh morning coffee!"
+                }
+            }
+        }, {
+            id: 14,
+            base: {
+                nominative: "jabłko",
+                genitive: "jabłka",
+                dative: "jabłku",
+                accusative: "jabłko",
+                instrumental: "jabłkiem",
+                locative: "jabłku",
+                vocative: "jabłko"
+            },
+            translation: "apple",
+            examples: {
+                nominative: {
+                    pl: "To jabłko jest czerwone.",
+                    en: "This apple is red."
+                },
+                genitive: {
+                    pl: "Nie ma jabłka w koszyku.",
+                    en: "There's no apple in the basket."
+                },
+                dative: {
+                    pl: "Daję jabłko dziecku.",
+                    en: "I'm giving the apple to the child."
+                },
+                accusative: {
+                    pl: "Jem jabłko.",
+                    en: "I'm eating an apple."
+                },
+                instrumental: {
+                    pl: "Kroję jabłko nożem.",
+                    en: "I'm cutting the apple with a knife."
+                },
+                locative: {
+                    pl: "M\xf3wimy o jabłku.",
+                    en: "We're talking about the apple."
+                },
+                vocative: {
+                    pl: "O jabłko świeże!",
+                    en: "Oh fresh apple!"
+                }
+            }
+        }, {
+            id: 15,
+            base: {
+                nominative: "szkoła",
+                genitive: "szkoły",
+                dative: "szkole",
+                accusative: "szkołę",
+                instrumental: "szkołą",
+                locative: "szkole",
+                vocative: "szkoło"
+            },
+            translation: "school",
+            examples: {
+                nominative: {
+                    pl: "Ta szkoła jest duża.",
+                    en: "This school is big."
+                },
+                genitive: {
+                    pl: "Nie ma szkoły w tej okolicy.",
+                    en: "There's no school in this area."
+                },
+                dative: {
+                    pl: "Pomagam szkole.",
+                    en: "I'm helping the school."
+                },
+                accusative: {
+                    pl: "Znam tę szkołę.",
+                    en: "I know this school."
+                },
+                instrumental: {
+                    pl: "Idę ze szkołą na wycieczkę.",
+                    en: "I'm going on a trip with the school."
+                },
+                locative: {
+                    pl: "M\xf3wimy o szkole.",
+                    en: "We're talking about the school."
+                },
+                vocative: {
+                    pl: "O szkoło, ile pracy!",
+                    en: "Oh school, so much work!"
+                }
+            }
+        }, {
+            id: 16,
+            base: {
+                nominative: "krzesło",
+                genitive: "krzesła",
+                dative: "krzesłu",
+                accusative: "krzesło",
+                instrumental: "krzesłem",
+                locative: "krześle",
+                vocative: "krzesło"
+            },
+            translation: "chair",
+            examples: {
+                nominative: {
+                    pl: "To krzesło jest wygodne.",
+                    en: "This chair is comfortable."
+                },
+                genitive: {
+                    pl: "Brakuje jednego krzesła.",
+                    en: "One chair is missing."
+                },
+                dative: {
+                    pl: "Daję poduszkę krzesłu.",
+                    en: "I'm giving a pillow to the chair."
+                },
+                accusative: {
+                    pl: "Przesuwam krzesło.",
+                    en: "I'm moving the chair."
+                },
+                instrumental: {
+                    pl: "Siedzę na krześle.",
+                    en: "I'm sitting on the chair."
+                },
+                locative: {
+                    pl: "Myślę o krześle.",
+                    en: "I'm thinking about the chair."
+                },
+                vocative: {
+                    pl: "O krzesło wygodne!",
+                    en: "Oh comfortable chair!"
+                }
+            }
+        }, {
+            id: 17,
+            base: {
+                nominative: "woda",
+                genitive: "wody",
+                dative: "wodzie",
+                accusative: "wodę",
+                instrumental: "wodą",
+                locative: "wodzie",
+                vocative: "wodo"
+            },
+            translation: "water",
+            examples: {
+                nominative: {
+                    pl: "Woda jest zimna.",
+                    en: "The water is cold."
+                },
+                genitive: {
+                    pl: "Nie ma wody w butelce.",
+                    en: "There's no water in the bottle."
+                },
+                dative: {
+                    pl: "Daję wodę roślinie.",
+                    en: "I'm giving water to the plant."
+                },
+                accusative: {
+                    pl: "Piję wodę.",
+                    en: "I'm drinking water."
+                },
+                instrumental: {
+                    pl: "Myję się wodą.",
+                    en: "I'm washing with water."
+                },
+                locative: {
+                    pl: "M\xf3wimy o wodzie.",
+                    en: "We're talking about water."
+                },
+                vocative: {
+                    pl: "O wodo życia!",
+                    en: "Oh water of life!"
+                }
+            }
+        }, {
+            id: 18,
+            base: {
+                nominative: "dzień",
+                genitive: "dnia",
+                dative: "dniowi",
+                accusative: "dzień",
+                instrumental: "dniem",
+                locative: "dniu",
+                vocative: "dniu"
+            },
+            translation: "day",
+            examples: {
+                nominative: {
+                    pl: "To był piękny dzień.",
+                    en: "It was a beautiful day."
+                },
+                genitive: {
+                    pl: "Nie pamiętam tego dnia.",
+                    en: "I don't remember that day."
+                },
+                dative: {
+                    pl: "Poświęcam ten prezent dniowi matki.",
+                    en: "I dedicate this gift to Mother's Day."
+                },
+                accusative: {
+                    pl: "Pamiętam ten dzień.",
+                    en: "I remember that day."
+                },
+                instrumental: {
+                    pl: "Spędzam dzień z rodziną.",
+                    en: "I'm spending the day with my family."
+                },
+                locative: {
+                    pl: "Rozmawiamy o dniu wczorajszym.",
+                    en: "We're talking about yesterday."
+                },
+                vocative: {
+                    pl: "Dniu, nie kończ się!",
+                    en: "Oh day, don’t end!"
+                }
+            }
+        }, {
+            id: 19,
+            base: {
+                nominative: "okno",
+                genitive: "okna",
+                dative: "oknu",
+                accusative: "okno",
+                instrumental: "oknem",
+                locative: "oknie",
+                vocative: "okno"
+            },
+            translation: "window",
+            examples: {
+                nominative: {
+                    pl: "To okno jest otwarte.",
+                    en: "This window is open."
+                },
+                genitive: {
+                    pl: "Nie ma okna w tym pokoju.",
+                    en: "There's no window in this room."
+                },
+                dative: {
+                    pl: "Zbliżam się do oknu.",
+                    en: "I'm approaching the window."
+                },
+                accusative: {
+                    pl: "Zamykam okno.",
+                    en: "I'm closing the window."
+                },
+                instrumental: {
+                    pl: "Patrzę przez okno.",
+                    en: "I'm looking through the window."
+                },
+                locative: {
+                    pl: "Myślę o oknie na poddaszu.",
+                    en: "I'm thinking about the attic window."
+                },
+                vocative: {
+                    pl: "O okno, pokaż mi świat!",
+                    en: "Oh window, show me the world!"
+                }
+            }
+        }, {
+            id: 20,
+            base: {
+                nominative: "czas",
+                genitive: "czasu",
+                dative: "czasowi",
+                accusative: "czas",
+                instrumental: "czasem",
+                locative: "czasie",
+                vocative: "czasie"
+            },
+            translation: "time",
+            examples: {
+                nominative: {
+                    pl: "Czas leci szybko.",
+                    en: "Time flies fast."
+                },
+                genitive: {
+                    pl: "Nie mam czasu.",
+                    en: "I don't have time."
+                },
+                dative: {
+                    pl: "Poświęcam wszystko czasowi.",
+                    en: "I dedicate everything to time."
+                },
+                accusative: {
+                    pl: "Tracę czas.",
+                    en: "I'm wasting time."
+                },
+                instrumental: {
+                    pl: "Zarządzam czasem efektywnie.",
+                    en: "I manage time efficiently."
+                },
+                locative: {
+                    pl: "Myślimy o czasie.",
+                    en: "We're thinking about time."
+                },
+                vocative: {
+                    pl: "Czasie, zatrzymaj się!",
+                    en: "Time, stop!"
+                }
+            }
+        }]
+

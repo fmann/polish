@@ -1,0 +1,327 @@
+// Polish numbers learning data
+
+export interface NumberItem {
+  id: number;
+  number: number;
+  polish: string;
+  english: string;
+  category: string;
+}
+
+// Polish numbers data
+export const polishNumbers: NumberItem[] = [
+  // Basic numbers 0-20
+  { id: 1, number: 0, polish: "zero", english: "zero", category: "basic" },
+  { id: 2, number: 1, polish: "jeden", english: "one", category: "basic" },
+  { id: 3, number: 2, polish: "dwa", english: "two", category: "basic" },
+  { id: 4, number: 3, polish: "trzy", english: "three", category: "basic" },
+  { id: 5, number: 4, polish: "cztery", english: "four", category: "basic" },
+  { id: 6, number: 5, polish: "pięć", english: "five", category: "basic" },
+  { id: 7, number: 6, polish: "sześć", english: "six", category: "basic" },
+  { id: 8, number: 7, polish: "siedem", english: "seven", category: "basic" },
+  { id: 9, number: 8, polish: "osiem", english: "eight", category: "basic" },
+  { id: 10, number: 9, polish: "dziewięć", english: "nine", category: "basic" },
+  { id: 11, number: 10, polish: "dziesięć", english: "ten", category: "basic" },
+  {
+    id: 12,
+    number: 11,
+    polish: "jedenaście",
+    english: "eleven",
+    category: "basic",
+  },
+  {
+    id: 13,
+    number: 12,
+    polish: "dwanaście",
+    english: "twelve",
+    category: "basic",
+  },
+  {
+    id: 14,
+    number: 13,
+    polish: "trzynaście",
+    english: "thirteen",
+    category: "basic",
+  },
+  {
+    id: 15,
+    number: 14,
+    polish: "czternaście",
+    english: "fourteen",
+    category: "basic",
+  },
+  {
+    id: 16,
+    number: 15,
+    polish: "piętnaście",
+    english: "fifteen",
+    category: "basic",
+  },
+  {
+    id: 17,
+    number: 16,
+    polish: "szesnaście",
+    english: "sixteen",
+    category: "basic",
+  },
+  {
+    id: 18,
+    number: 17,
+    polish: "siedemnaście",
+    english: "seventeen",
+    category: "basic",
+  },
+  {
+    id: 19,
+    number: 18,
+    polish: "osiemnaście",
+    english: "eighteen",
+    category: "basic",
+  },
+  {
+    id: 20,
+    number: 19,
+    polish: "dziewiętnaście",
+    english: "nineteen",
+    category: "basic",
+  },
+  {
+    id: 21,
+    number: 20,
+    polish: "dwadzieścia",
+    english: "twenty",
+    category: "basic",
+  },
+
+  // Tens
+  {
+    id: 22,
+    number: 30,
+    polish: "trzydzieści",
+    english: "thirty",
+    category: "tens",
+  },
+  {
+    id: 23,
+    number: 40,
+    polish: "czterdzieści",
+    english: "forty",
+    category: "tens",
+  },
+  {
+    id: 24,
+    number: 50,
+    polish: "pięćdziesiąt",
+    english: "fifty",
+    category: "tens",
+  },
+  {
+    id: 25,
+    number: 60,
+    polish: "sześćdziesiąt",
+    english: "sixty",
+    category: "tens",
+  },
+  {
+    id: 26,
+    number: 70,
+    polish: "siedemdziesiąt",
+    english: "seventy",
+    category: "tens",
+  },
+  {
+    id: 27,
+    number: 80,
+    polish: "osiemdziesiąt",
+    english: "eighty",
+    category: "tens",
+  },
+  {
+    id: 28,
+    number: 90,
+    polish: "dziewięćdziesiąt",
+    english: "ninety",
+    category: "tens",
+  },
+
+  // Hundreds
+  {
+    id: 29,
+    number: 100,
+    polish: "sto",
+    english: "one hundred",
+    category: "hundreds",
+  },
+  {
+    id: 30,
+    number: 200,
+    polish: "dwieście",
+    english: "two hundred",
+    category: "hundreds",
+  },
+  {
+    id: 31,
+    number: 300,
+    polish: "trzysta",
+    english: "three hundred",
+    category: "hundreds",
+  },
+  {
+    id: 32,
+    number: 400,
+    polish: "czterysta",
+    english: "four hundred",
+    category: "hundreds",
+  },
+  {
+    id: 33,
+    number: 500,
+    polish: "pięćset",
+    english: "five hundred",
+    category: "hundreds",
+  },
+  {
+    id: 34,
+    number: 600,
+    polish: "sześćset",
+    english: "six hundred",
+    category: "hundreds",
+  },
+  {
+    id: 35,
+    number: 700,
+    polish: "siedemset",
+    english: "seven hundred",
+    category: "hundreds",
+  },
+  {
+    id: 36,
+    number: 800,
+    polish: "osiemset",
+    english: "eight hundred",
+    category: "hundreds",
+  },
+  {
+    id: 37,
+    number: 900,
+    polish: "dziewięćset",
+    english: "nine hundred",
+    category: "hundreds",
+  },
+
+  // Large numbers
+  {
+    id: 38,
+    number: 1000,
+    polish: "tysiąc",
+    english: "one thousand",
+    category: "large",
+  },
+  {
+    id: 39,
+    number: 2000,
+    polish: "dwa tysiące",
+    english: "two thousand",
+    category: "large",
+  },
+  {
+    id: 40,
+    number: 5000,
+    polish: "pięć tysięcy",
+    english: "five thousand",
+    category: "large",
+  },
+  {
+    id: 41,
+    number: 10000,
+    polish: "dziesięć tysięcy",
+    english: "ten thousand",
+    category: "large",
+  },
+  {
+    id: 42,
+    number: 100000,
+    polish: "sto tysięcy",
+    english: "one hundred thousand",
+    category: "large",
+  },
+  {
+    id: 43,
+    number: 1000000,
+    polish: "milion",
+    english: "one million",
+    category: "large",
+  },
+
+  // Common compound numbers
+  {
+    id: 44,
+    number: 21,
+    polish: "dwadzieścia jeden",
+    english: "twenty-one",
+    category: "compound",
+  },
+  {
+    id: 45,
+    number: 25,
+    polish: "dwadzieścia pięć",
+    english: "twenty-five",
+    category: "compound",
+  },
+  {
+    id: 46,
+    number: 33,
+    polish: "trzydzieści trzy",
+    english: "thirty-three",
+    category: "compound",
+  },
+  {
+    id: 47,
+    number: 45,
+    polish: "czterdzieści pięć",
+    english: "forty-five",
+    category: "compound",
+  },
+  {
+    id: 48,
+    number: 67,
+    polish: "sześćdziesiąt siedem",
+    english: "sixty-seven",
+    category: "compound",
+  },
+  {
+    id: 49,
+    number: 89,
+    polish: "osiemdziesiąt dziewięć",
+    english: "eighty-nine",
+    category: "compound",
+  },
+  {
+    id: 50,
+    number: 101,
+    polish: "sto jeden",
+    english: "one hundred and one",
+    category: "compound",
+  },
+  {
+    id: 51,
+    number: 150,
+    polish: "sto pięćdziesiąt",
+    english: "one hundred and fifty",
+    category: "compound",
+  },
+  {
+    id: 52,
+    number: 250,
+    polish: "dwieście pięćdziesiąt",
+    english: "two hundred and fifty",
+    category: "compound",
+  },
+  {
+    id: 53,
+    number: 1500,
+    polish: "tysiąc pięćset",
+    english: "one thousand five hundred",
+    category: "compound",
+  },
+];
