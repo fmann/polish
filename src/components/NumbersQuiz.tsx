@@ -13,9 +13,9 @@ const NumbersQuiz: React.FC = () => {
 
   // Automatically speak Polish when appropriate
   useEffect(() => {
-    if (currentNumber && 'speechSynthesis' in window) {
+    if (currentNumber && "speechSynthesis" in window) {
       let shouldSpeak = false;
-      
+
       // Speak Polish if showing Polish text initially (not digits)
       if (!showAsDigits && !isRevealed) {
         shouldSpeak = true;
@@ -24,18 +24,24 @@ const NumbersQuiz: React.FC = () => {
       else if (isRevealed && showAsDigits) {
         shouldSpeak = true;
       }
-      
+
       if (shouldSpeak) {
         // Small delay to ensure the component is fully rendered
         const timer = setTimeout(() => {
           const utterance = new SpeechSynthesisUtterance(currentNumber.polish);
           utterance.lang = "pl-PL";
           utterance.rate = 0.8;
-          
+
           // Try to select a better Polish voice (same logic as SpeechButton)
           const voices = window.speechSynthesis.getVoices();
-          const preferredVoiceNames = ["Zosia", "Polish", "Maja", "Katarzyna", "pl-PL"];
-          
+          const preferredVoiceNames = [
+            "Zosia",
+            "Polish",
+            "Maja",
+            "Katarzyna",
+            "pl-PL",
+          ];
+
           let selectedVoice = null;
           for (const voiceName of preferredVoiceNames) {
             selectedVoice = voices.find(
@@ -45,7 +51,7 @@ const NumbersQuiz: React.FC = () => {
             );
             if (selectedVoice) break;
           }
-          
+
           if (!selectedVoice) {
             selectedVoice = voices.find(
               (voice) =>
@@ -56,18 +62,18 @@ const NumbersQuiz: React.FC = () => {
                   !voice.name.includes("Google"))
             );
           }
-          
+
           if (!selectedVoice) {
             selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
           }
-          
+
           if (selectedVoice) {
             utterance.voice = selectedVoice;
           }
-          
+
           window.speechSynthesis.speak(utterance);
         }, 300);
-        
+
         return () => clearTimeout(timer);
       }
     }

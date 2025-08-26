@@ -11,17 +11,23 @@ const DatesQuiz: React.FC = () => {
 
   // Automatically speak the Polish date when it first appears
   useEffect(() => {
-    if (currentDate && !isRevealed && 'speechSynthesis' in window) {
+    if (currentDate && !isRevealed && "speechSynthesis" in window) {
       // Small delay to ensure the component is fully rendered
       const timer = setTimeout(() => {
         const utterance = new SpeechSynthesisUtterance(currentDate.polish);
         utterance.lang = "pl-PL";
         utterance.rate = 0.8;
-        
+
         // Try to select a better Polish voice (same logic as SpeechButton)
         const voices = window.speechSynthesis.getVoices();
-        const preferredVoiceNames = ["Zosia", "Polish", "Maja", "Katarzyna", "pl-PL"];
-        
+        const preferredVoiceNames = [
+          "Zosia",
+          "Polish",
+          "Maja",
+          "Katarzyna",
+          "pl-PL",
+        ];
+
         let selectedVoice = null;
         for (const voiceName of preferredVoiceNames) {
           selectedVoice = voices.find(
@@ -31,7 +37,7 @@ const DatesQuiz: React.FC = () => {
           );
           if (selectedVoice) break;
         }
-        
+
         if (!selectedVoice) {
           selectedVoice = voices.find(
             (voice) =>
@@ -42,18 +48,18 @@ const DatesQuiz: React.FC = () => {
                 !voice.name.includes("Google"))
           );
         }
-        
+
         if (!selectedVoice) {
           selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
         }
-        
+
         if (selectedVoice) {
           utterance.voice = selectedVoice;
         }
-        
+
         window.speechSynthesis.speak(utterance);
       }, 300);
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentIndex, currentDate, isRevealed]);
