@@ -6,6 +6,7 @@ import TensesQuiz from "./components/TensesQuiz";
 import CasesQuiz from "./components/CasesQuiz";
 import DatesQuiz from "./components/DatesQuiz";
 import NumbersQuiz from "./components/NumbersQuiz";
+import MyWordsQuiz from "./components/MyWordsQuiz";
 
 const App: React.FC = () => {
   return (
@@ -13,11 +14,8 @@ const App: React.FC = () => {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <h1 className="text-2xl font-bold text-gray-900">
-            🇵🇱 Polish Language Learning
+            🇵🇱 Polish Language Learning Tool
           </h1>
-          <p className="text-gray-600 mt-1">
-            Master vocabulary, tenses, and grammatical cases
-          </p>
         </div>
       </header>
 
@@ -44,6 +42,7 @@ const App: React.FC = () => {
           />
           <Route path="/numbers" element={<NumbersQuiz />} />
           <Route path="/dates" element={<DatesQuiz />} />
+          <Route path="/my-words" element={<MyWordsQuiz />} />
           <Route path="/tenses" element={<TensesQuiz />} />
           <Route path="/cases" element={<CasesQuiz />} />
           <Route

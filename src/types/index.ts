@@ -78,6 +78,14 @@ export interface NumberItem {
   category: string;
 }
 
+export interface CustomWord {
+  id: number;
+  polish: string;
+  english: string;
+  sourceLanguage: string;
+  targetLanguage: string;
+}
+
 export type QuizDirection = "polish-to-english" | "english-to-polish";
 
 export type ViewType =
@@ -86,6 +94,7 @@ export type ViewType =
   | "favorites"
   | "numbers"
   | "dates"
+  | "my-words"
   | "tenses"
   | "cases";
 

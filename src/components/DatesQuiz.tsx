@@ -143,9 +143,7 @@ const DatesQuiz: React.FC = () => {
           <div className="mb-6">
             <h3 className="text-lg text-gray-600 mb-2">Polish Date</h3>
             <div className="flex items-center justify-center">
-              <p className="text-3xl font-bold text-blue-600">
-                {currentDate.polish}
-              </p>
+              <p className="text-3xl font-bold">{currentDate.polish}</p>
               <SpeechButton
                 text={currentDate.polish}
                 language="pl-PL"

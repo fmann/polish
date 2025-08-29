@@ -28,6 +28,7 @@ const Navigation: React.FC = () => {
     },
     { id: "numbers", label: "Numbers", icon: "🔢", path: "/numbers" },
     { id: "dates", label: "Dates", icon: "📅", path: "/dates" },
+    { id: "my-words", label: "My Words", icon: "📚", path: "/my-words" },
     { id: "tenses", label: "Tenses", icon: "⏰", path: "/tenses" },
     { id: "cases", label: "Cases", icon: "📝", path: "/cases" },
     { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },
