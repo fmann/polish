@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { polishNumbers, NumberItem } from "../data/numbers";
 import { shuffleArray } from "../utils/textUtils";
 import { useAutoSpeech } from "../hooks/useAutoSpeech";
+import { useSimpleQuizNavigation } from "../hooks/useQuizNavigation";
 import SpeechButton from "./SpeechButton";
 
 const NumbersQuiz: React.FC = () => {
@@ -9,6 +10,9 @@ const NumbersQuiz: React.FC = () => {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
   const [showAsDigits, setShowAsDigits] = useState<boolean>(true);
   const [numbers] = useState<NumberItem[]>(() => shuffleArray(polishNumbers));
+
+  // Handle navigation from search results
+  useSimpleQuizNavigation(numbers, setCurrentIndex, setIsRevealed);
 
   const currentNumber = numbers[currentIndex];
 

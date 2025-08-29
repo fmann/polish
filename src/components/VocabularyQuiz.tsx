@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useVocabularyData } from "../hooks/useData";
+import { useQuizNavigation } from "../hooks/useQuizNavigation";
 import { decodePolishText, getRandomItems } from "../utils/textUtils";
 import {
   getFavoriteWords,
@@ -24,6 +25,15 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
   const [, setFavoritesChanged] = useState<number>(0);
+
+  // Handle navigation from search results
+  useQuizNavigation(
+    data,
+    currentItems,
+    setCurrentItems,
+    setCurrentIndex,
+    setShowAnswer
+  );
 
   // Load new set of quiz items
   useEffect(() => {

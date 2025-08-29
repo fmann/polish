@@ -1,12 +1,16 @@
 import React, { useState, useCallback } from "react";
 import { sampleDates, DateItem } from "../data/dates";
 import { useAutoSpeech } from "../hooks/useAutoSpeech";
+import { useSimpleQuizNavigation } from "../hooks/useQuizNavigation";
 import SpeechButton from "./SpeechButton";
 
 const DatesQuiz: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
   const [dates] = useState<DateItem[]>(sampleDates);
+
+  // Handle navigation from search results
+  useSimpleQuizNavigation(dates, setCurrentIndex, setIsRevealed);
 
   const currentDate = dates[currentIndex];
 

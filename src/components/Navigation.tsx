@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ViewType } from "../types";
+import SearchModal from "./SearchModal";
 
 interface NavItem {
   id: ViewType;
@@ -11,7 +12,9 @@ interface NavItem {
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems: NavItem[] = [
     {
@@ -44,6 +47,29 @@ const Navigation: React.FC = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const openSearch = () => {
+    setIsSearchOpen(true);
+  };
+
+  const closeSearch = () => {
+    setIsSearchOpen(false);
+  };
+
+  const handleNavigateToItem = (
+    path: string,
+    itemId?: number,
+    itemIndex?: number
+  ) => {
+    // Navigate to the path with jumpToId parameter if itemId is provided
+    if (itemId !== undefined) {
+      navigate(`${path}?jumpToId=${itemId}`);
+    } else if (itemIndex !== undefined) {
+      navigate(`${path}?jumpTo=${itemIndex}`);
+    } else {
+      navigate(path);
+    }
   };
 
   return (
@@ -79,9 +105,34 @@ const Navigation: React.FC = () => {
             <span className="font-medium text-lg">{currentItem.label}</span>
           </div>
 
-          {/* Spacer to balance the layout */}
-          <div className="w-10"></div>
+          {/* Search Button */}
+          <button
+            onClick={openSearch}
+            className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Search"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
         </div>
+
+        {/* Search Modal */}
+        <SearchModal
+          isOpen={isSearchOpen}
+          onClose={closeSearch}
+          onNavigateToItem={handleNavigateToItem}
+        />
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
