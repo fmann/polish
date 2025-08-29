@@ -1,6 +1,7 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { polishNumbers, NumberItem } from "../data/numbers";
 import { shuffleArray } from "../utils/textUtils";
+import { useAutoSpeech } from "../hooks/useAutoSpeech";
 import SpeechButton from "./SpeechButton";
 
 const NumbersQuiz: React.FC = () => {
@@ -11,73 +12,30 @@ const NumbersQuiz: React.FC = () => {
 
   const currentNumber = numbers[currentIndex];
 
-  // Automatically speak Polish when appropriate
-  useEffect(() => {
-    if (currentNumber && "speechSynthesis" in window) {
-      let shouldSpeak = false;
+  // Calculate what text should be automatically spoken
+  const autoSpeechText = (() => {
+    if (!currentNumber) return "";
 
-      // Speak Polish if showing Polish text initially (not digits)
-      if (!showAsDigits && !isRevealed) {
-        shouldSpeak = true;
-      }
-      // Or speak Polish when revealed and showing Polish translation
-      else if (isRevealed && showAsDigits) {
-        shouldSpeak = true;
-      }
-
-      if (shouldSpeak) {
-        // Small delay to ensure the component is fully rendered
-        const timer = setTimeout(() => {
-          const utterance = new SpeechSynthesisUtterance(currentNumber.polish);
-          utterance.lang = "pl-PL";
-          utterance.rate = 0.8;
-
-          // Try to select a better Polish voice (same logic as SpeechButton)
-          const voices = window.speechSynthesis.getVoices();
-          const preferredVoiceNames = [
-            "Zosia",
-            "Polish",
-            "Maja",
-            "Katarzyna",
-            "pl-PL",
-          ];
-
-          let selectedVoice = null;
-          for (const voiceName of preferredVoiceNames) {
-            selectedVoice = voices.find(
-              (voice) =>
-                voice.name.includes(voiceName) ||
-                (voice.lang.includes("pl") && voice.name.includes(voiceName))
-            );
-            if (selectedVoice) break;
-          }
-
-          if (!selectedVoice) {
-            selectedVoice = voices.find(
-              (voice) =>
-                voice.lang.includes("pl") &&
-                (voice.name.includes("Premium") ||
-                  voice.name.includes("Enhanced") ||
-                  voice.name.includes("Neural") ||
-                  !voice.name.includes("Google"))
-            );
-          }
-
-          if (!selectedVoice) {
-            selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
-          }
-
-          if (selectedVoice) {
-            utterance.voice = selectedVoice;
-          }
-
-          window.speechSynthesis.speak(utterance);
-        }, 300);
-
-        return () => clearTimeout(timer);
-      }
+    // Speak Polish if showing Polish text initially (not digits)
+    if (!showAsDigits && !isRevealed) {
+      return currentNumber.polish;
     }
-  }, [currentIndex, currentNumber, isRevealed, showAsDigits]);
+    // Or speak Polish when revealed and showing Polish translation
+    else if (isRevealed && showAsDigits) {
+      return currentNumber.polish;
+    }
+
+    return "";
+  })();
+
+  // Use the auto-speech hook
+  useAutoSpeech({
+    text: autoSpeechText,
+    enabled: !!autoSpeechText,
+    language: "pl-PL",
+    rate: 0.8,
+    delay: 300,
+  });
 
   const handleNext = useCallback((): void => {
     setCurrentIndex((prev) => (prev + 1) % numbers.length);

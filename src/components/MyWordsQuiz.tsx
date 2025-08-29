@@ -8,6 +8,7 @@ import {
   ParsedCSVResult,
 } from "../utils/csvParser";
 import { shuffleArray } from "../utils/textUtils";
+import { useAutoSpeech } from "../hooks/useAutoSpeech";
 import SpeechButton from "./SpeechButton";
 
 const MyWordsQuiz: React.FC = () => {
@@ -29,62 +30,15 @@ const MyWordsQuiz: React.FC = () => {
   }, []);
 
   // Auto-speech for Polish words when first displayed
-  useEffect(() => {
-    const currentWord = customWords[currentIndex];
-    if (currentWord && !isRevealed && "speechSynthesis" in window) {
-      // Small delay to ensure the component is fully rendered
-      const timer = setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(currentWord.polish);
-        utterance.lang = "pl-PL";
-        utterance.rate = 0.8;
-
-        // Try to select a better Polish voice (same logic as other components)
-        const voices = window.speechSynthesis.getVoices();
-        const preferredVoiceNames = [
-          "Zosia",
-          "Polish",
-          "Maja",
-          "Katarzyna",
-          "pl-PL",
-        ];
-
-        let selectedVoice = null;
-        for (const voiceName of preferredVoiceNames) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.name.includes(voiceName) ||
-              (voice.lang.includes("pl") && voice.name.includes(voiceName))
-          );
-          if (selectedVoice) break;
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.lang.includes("pl") &&
-              (voice.name.includes("Premium") ||
-                voice.name.includes("Enhanced") ||
-                voice.name.includes("Neural") ||
-                !voice.name.includes("Google"))
-          );
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
-        }
-
-        if (selectedVoice) {
-          utterance.voice = selectedVoice;
-        }
-
-        window.speechSynthesis.speak(utterance);
-      }, 300);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentIndex, customWords, isRevealed]);
-
   const currentWord = customWords[currentIndex];
+
+  useAutoSpeech({
+    text: currentWord && !isRevealed ? currentWord.polish : "",
+    enabled: !!(currentWord && !isRevealed),
+    language: "pl-PL",
+    rate: 0.8,
+    delay: 300,
+  });
 
   const handleNext = useCallback((): void => {
     setCurrentIndex((prev) => (prev + 1) % customWords.length);

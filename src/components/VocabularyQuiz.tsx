@@ -6,6 +6,7 @@ import {
   toggleFavorite,
   isFavorite,
 } from "../utils/favorites";
+import { useAutoSpeech } from "../hooks/useAutoSpeech";
 import { VocabularyWord, QuizDirection } from "../types";
 import SpeechButton from "./SpeechButton";
 
@@ -22,7 +23,7 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
   const [currentItems, setCurrentItems] = useState<VocabularyWord[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
-  const [favoritesChanged, setFavoritesChanged] = useState<number>(0);
+  const [, setFavoritesChanged] = useState<number>(0);
 
   // Load new set of quiz items
   useEffect(() => {
@@ -120,125 +121,30 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
     ? currentItem.exampleSentenceTranslate
     : "";
 
-  // Automatically speak Polish when English->Polish answer is revealed
-  useEffect(() => {
-    if (
-      currentItem &&
-      showAnswer &&
-      !isPolishToEnglish &&
-      "speechSynthesis" in window
-    ) {
-      // Small delay to ensure the component is fully rendered
-      const timer = setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(answerText);
-        utterance.lang = "pl-PL";
-        utterance.rate = 0.8;
+  // Calculate what Polish text should be automatically spoken
+  const autoSpeechText = (() => {
+    if (!currentItem) return "";
 
-        // Try to select a better Polish voice (same logic as SpeechButton)
-        const voices = window.speechSynthesis.getVoices();
-        const preferredVoiceNames = [
-          "Zosia",
-          "Polish",
-          "Maja",
-          "Katarzyna",
-          "pl-PL",
-        ];
-
-        let selectedVoice = null;
-        for (const voiceName of preferredVoiceNames) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.name.includes(voiceName) ||
-              (voice.lang.includes("pl") && voice.name.includes(voiceName))
-          );
-          if (selectedVoice) break;
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.lang.includes("pl") &&
-              (voice.name.includes("Premium") ||
-                voice.name.includes("Enhanced") ||
-                voice.name.includes("Neural") ||
-                !voice.name.includes("Google"))
-          );
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
-        }
-
-        if (selectedVoice) {
-          utterance.voice = selectedVoice;
-        }
-
-        window.speechSynthesis.speak(utterance);
-      }, 300);
-
-      return () => clearTimeout(timer);
+    // Speak Polish when English->Polish answer is revealed
+    if (showAnswer && !isPolishToEnglish) {
+      return answerText;
     }
-  }, [currentItem, showAnswer, isPolishToEnglish, answerText]);
-
-  // Automatically speak Polish word when first displayed in PL->EN mode
-  useEffect(() => {
-    if (
-      currentItem &&
-      isPolishToEnglish &&
-      !showAnswer &&
-      "speechSynthesis" in window
-    ) {
-      // Small delay to ensure the component is fully rendered
-      const timer = setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(questionText);
-        utterance.lang = "pl-PL";
-        utterance.rate = 0.8;
-
-        // Try to select a better Polish voice (same logic as SpeechButton)
-        const voices = window.speechSynthesis.getVoices();
-        const preferredVoiceNames = [
-          "Zosia",
-          "Polish",
-          "Maja",
-          "Katarzyna",
-          "pl-PL",
-        ];
-
-        let selectedVoice = null;
-        for (const voiceName of preferredVoiceNames) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.name.includes(voiceName) ||
-              (voice.lang.includes("pl") && voice.name.includes(voiceName))
-          );
-          if (selectedVoice) break;
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.lang.includes("pl") &&
-              (voice.name.includes("Premium") ||
-                voice.name.includes("Enhanced") ||
-                voice.name.includes("Neural") ||
-                !voice.name.includes("Google"))
-          );
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
-        }
-
-        if (selectedVoice) {
-          utterance.voice = selectedVoice;
-        }
-
-        window.speechSynthesis.speak(utterance);
-      }, 300);
-
-      return () => clearTimeout(timer);
+    // Speak Polish word when first displayed in PL->EN mode
+    else if (isPolishToEnglish && !showAnswer) {
+      return questionText;
     }
-  }, [currentItem, isPolishToEnglish, showAnswer, questionText]);
+
+    return "";
+  })();
+
+  // Use the auto-speech hook for Polish pronunciation
+  useAutoSpeech({
+    text: autoSpeechText,
+    enabled: !!autoSpeechText,
+    language: "pl-PL",
+    rate: 0.8,
+    delay: 300,
+  });
 
   if (loading) {
     return (

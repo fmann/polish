@@ -1,5 +1,6 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { sampleDates, DateItem } from "../data/dates";
+import { useAutoSpeech } from "../hooks/useAutoSpeech";
 import SpeechButton from "./SpeechButton";
 
 const DatesQuiz: React.FC = () => {
@@ -10,59 +11,11 @@ const DatesQuiz: React.FC = () => {
   const currentDate = dates[currentIndex];
 
   // Automatically speak the Polish date when it first appears
-  useEffect(() => {
-    if (currentDate && !isRevealed && "speechSynthesis" in window) {
-      // Small delay to ensure the component is fully rendered
-      const timer = setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(currentDate.polish);
-        utterance.lang = "pl-PL";
-        utterance.rate = 0.8;
-
-        // Try to select a better Polish voice (same logic as SpeechButton)
-        const voices = window.speechSynthesis.getVoices();
-        const preferredVoiceNames = [
-          "Zosia",
-          "Polish",
-          "Maja",
-          "Katarzyna",
-          "pl-PL",
-        ];
-
-        let selectedVoice = null;
-        for (const voiceName of preferredVoiceNames) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.name.includes(voiceName) ||
-              (voice.lang.includes("pl") && voice.name.includes(voiceName))
-          );
-          if (selectedVoice) break;
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find(
-            (voice) =>
-              voice.lang.includes("pl") &&
-              (voice.name.includes("Premium") ||
-                voice.name.includes("Enhanced") ||
-                voice.name.includes("Neural") ||
-                !voice.name.includes("Google"))
-          );
-        }
-
-        if (!selectedVoice) {
-          selectedVoice = voices.find((voice) => voice.lang.includes("pl"));
-        }
-
-        if (selectedVoice) {
-          utterance.voice = selectedVoice;
-        }
-
-        window.speechSynthesis.speak(utterance);
-      }, 300);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentIndex, currentDate, isRevealed]);
+  useAutoSpeech({
+    text: currentDate?.polish || "",
+    enabled: !!currentDate && !isRevealed,
+    language: "pl-PL",
+  });
 
   const handleNext = useCallback((): void => {
     setCurrentIndex((prev) => (prev + 1) % dates.length);

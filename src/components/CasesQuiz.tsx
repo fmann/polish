@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCasesData } from "../hooks/useData";
 import { decodePolishText, getRandomItems } from "../utils/textUtils";
-import { GrammaticalCase, CaseDescription } from "../types";
+import { GrammaticalCase } from "../types";
 import SpeechButton from "./SpeechButton";
 
 type CaseKey =
