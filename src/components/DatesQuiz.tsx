@@ -121,40 +121,9 @@ const DatesQuiz: React.FC = () => {
       aria-label="Polish dates quiz"
     >
       <div className="text-center mb-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          📅 Polish Dates
-        </h2>
-        <p className="text-gray-600">
-          Learn Polish date formats - click to reveal translation
-        </p>
         <p className="text-sm text-gray-500 mt-2">
           {currentIndex + 1} of {dates.length}
         </p>
-      </div>
-
-      {/* Navigation buttons */}
-      <div className="flex justify-between items-center mb-6">
-        <button
-          onClick={handlePrevious}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
-          aria-label="Previous date"
-        >
-          ← Previous
-        </button>
-
-        <div className="text-center">
-          <p className="text-sm text-gray-500">
-            Use ← → arrow keys to navigate, Space/Enter to reveal
-          </p>
-        </div>
-
-        <button
-          onClick={handleNext}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
-          aria-label="Next date"
-        >
-          Next →
-        </button>
       </div>
 
       {/* Main card */}
@@ -206,27 +175,6 @@ const DatesQuiz: React.FC = () => {
                   language="en-US"
                   className="ml-3 text-xl"
                 />
-              </div>
-
-              {/* Additional info */}
-              <div className="bg-gray-50 rounded-lg p-4 mt-4">
-                <h4 className="font-semibold text-gray-700 mb-2">
-                  Date Components:
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
-                  <div>
-                    <span className="font-medium">Day:</span>{" "}
-                    {currentDate.dayOfWeek}
-                  </div>
-                  <div>
-                    <span className="font-medium">Number:</span>{" "}
-                    {currentDate.dayNumber}
-                  </div>
-                  <div>
-                    <span className="font-medium">Month:</span>{" "}
-                    {currentDate.month}
-                  </div>
-                </div>
               </div>
             </div>
           )}

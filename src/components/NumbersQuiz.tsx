@@ -160,47 +160,9 @@ const NumbersQuiz: React.FC = () => {
       aria-label="Polish numbers quiz"
     >
       <div className="text-center mb-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          🔢 Polish Numbers
-        </h2>
-        <p className="text-gray-600">
-          Learn Polish number pronunciation - click to reveal translation
-        </p>
         <p className="text-sm text-gray-500 mt-2">
           {currentIndex + 1} of {numbers.length}
         </p>
-      </div>
-
-      {/* Controls */}
-      <div className="flex justify-between items-center mb-6">
-        <button
-          onClick={handlePrevious}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
-          aria-label="Previous number"
-        >
-          ← Previous
-        </button>
-
-        <div className="flex flex-col items-center">
-          <button
-            onClick={toggleDisplayMode}
-            className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors mb-2"
-            title="Toggle between digits and Polish text (T key)"
-          >
-            Show as {showAsDigits ? "Polish" : "Digits"}
-          </button>
-          <p className="text-xs text-gray-500">
-            ← → to navigate, Space to reveal, T to toggle
-          </p>
-        </div>
-
-        <button
-          onClick={handleNext}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
-          aria-label="Next number"
-        >
-          Next →
-        </button>
       </div>
 
       {/* Main card */}
@@ -275,31 +237,6 @@ const NumbersQuiz: React.FC = () => {
                   language={showAsDigits ? "pl-PL" : "en-US"}
                   className="ml-3 text-2xl"
                 />
-              </div>
-
-              {/* Additional info */}
-              <div className="bg-gray-50 rounded-lg p-4 mt-4">
-                <h4 className="font-semibold text-gray-700 mb-2">
-                  Complete Information:
-                </h4>
-                <div className="text-sm space-y-1">
-                  <div>
-                    <span className="font-medium">Digits:</span>{" "}
-                    {currentNumber.number.toLocaleString()}
-                  </div>
-                  <div>
-                    <span className="font-medium">Polish:</span>{" "}
-                    {currentNumber.polish}
-                  </div>
-                  <div>
-                    <span className="font-medium">English:</span>{" "}
-                    {currentNumber.english}
-                  </div>
-                  <div>
-                    <span className="font-medium">Category:</span>{" "}
-                    {currentNumber.category}
-                  </div>
-                </div>
               </div>
             </div>
           )}
