@@ -305,19 +305,6 @@ const VocabularyQuiz: React.FC<VocabularyQuizProps> = ({
           ← Previous
         </button>
 
-        <div className="text-center text-sm text-gray-600">
-          {currentIndex === currentItems.length - 1 ? (
-            <span className="text-blue-600 font-medium">
-              Next will restart with new words
-            </span>
-          ) : (
-            <span>
-              Progress:{" "}
-              {Math.round(((currentIndex + 1) / currentItems.length) * 100)}%
-            </span>
-          )}
-        </div>
-
         <button onClick={handleNext} className="nav-button">
           {currentIndex === currentItems.length - 1 ? "New Set" : "Next"} →
         </button>
