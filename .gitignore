@@ -10,3 +10,6 @@ dist
 cards*.zip
 /media
 /meta
+
+# Reference material
+*.pdf
