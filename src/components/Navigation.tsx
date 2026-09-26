@@ -34,6 +34,12 @@ const Navigation: React.FC = () => {
     { id: "my-words", label: "My Words", icon: "📚", path: "/my-words" },
     { id: "tenses", label: "Tenses", icon: "⏰", path: "/tenses" },
     { id: "cases", label: "Cases", icon: "📝", path: "/cases" },
+    {
+      id: "case-reference",
+      label: "Case Reference",
+      icon: "📖",
+      path: "/case-reference",
+    },
     { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },
     { id: "decks", label: "Decks", icon: "🗂️", path: "/decks" },
   ];

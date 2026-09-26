@@ -97,6 +97,7 @@ export type ViewType =
   | "my-words"
   | "tenses"
   | "cases"
+  | "case-reference"
   | "decks";
 
 export type TenseKey =
