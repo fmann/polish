@@ -96,7 +96,8 @@ export type ViewType =
   | "dates"
   | "my-words"
   | "tenses"
-  | "cases";
+  | "cases"
+  | "decks";
 
 export type TenseKey =
   | "perfectivePast"

@@ -1,3 +1,12 @@
 node_modules
 .DS_Store
 dist
+
+# Anki exports
+*.apkg
+*.anki2
+*.anki21
+*.anki21b
+cards*.zip
+/media
+/meta

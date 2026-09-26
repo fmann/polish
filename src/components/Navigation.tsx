@@ -35,6 +35,7 @@ const Navigation: React.FC = () => {
     { id: "tenses", label: "Tenses", icon: "⏰", path: "/tenses" },
     { id: "cases", label: "Cases", icon: "📝", path: "/cases" },
     { id: "favorites", label: "Favourites", icon: "⭐", path: "/favorites" },
+    { id: "decks", label: "Decks", icon: "🗂️", path: "/decks" },
   ];
 
   // Find current active item

@@ -41,7 +41,7 @@ const CasesQuiz: React.FC = () => {
 
   const currentItem = currentItems[currentIndex];
   const currentDescription = descriptions.find(
-    (d) => d.name && d.name.toLowerCase() === selectedCase.toLowerCase(),
+    (d) => d.name && d.name.toLowerCase() === selectedCase.toLowerCase()
   );
 
   function resetCard(): void {

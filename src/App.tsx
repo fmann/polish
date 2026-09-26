@@ -7,6 +7,7 @@ import CasesQuiz from "./components/CasesQuiz";
 import DatesQuiz from "./components/DatesQuiz";
 import NumbersQuiz from "./components/NumbersQuiz";
 import MyWordsQuiz from "./components/MyWordsQuiz";
+import DecksQuiz from "./components/DecksQuiz";
 
 const App: React.FC = () => {
   return (
@@ -45,6 +46,7 @@ const App: React.FC = () => {
           <Route path="/my-words" element={<MyWordsQuiz />} />
           <Route path="/tenses" element={<TensesQuiz />} />
           <Route path="/cases" element={<CasesQuiz />} />
+          <Route path="/decks" element={<DecksQuiz />} />
           <Route
             path="/"
             element={<Navigate to="/polish-to-english" replace />}
