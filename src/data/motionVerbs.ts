@@ -13,6 +13,7 @@
 export type MotionMode = "foot" | "vehicle" | "plane" | "any";
 export type MotionTense = "past" | "present" | "future";
 export type MotionFrequency = "once" | "repeated";
+export type MotionPerson = 1 | 2 | 3;
 type VerbForm = "present" | "past" | "futurePerfective" | "futureImperfective";
 
 interface MotionVerb {
@@ -1014,6 +1015,7 @@ export interface MotionCard {
   mode: MotionMode;
   tense: MotionTense;
   frequency: MotionFrequency;
+  person: MotionPerson;
 }
 
 const conjugate = (template: MotionTemplate, person: Person): string => {
@@ -1087,5 +1089,7 @@ export const generateMotionCards = (): MotionCard[] =>
       mode: template.mode,
       tense: template.tense,
       frequency: template.frequency,
+      // ja/my → 1st, ty/wy → 2nd, on/ona/oni/one → 3rd
+      person: ((person.index % 3) + 1) as MotionPerson,
     }));
   });

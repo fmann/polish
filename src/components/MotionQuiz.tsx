@@ -4,6 +4,7 @@ import {
   MotionCard,
   MotionFrequency,
   MotionMode,
+  MotionPerson,
   MotionTense,
 } from "../data/motionVerbs";
 import { getRandomItems } from "../utils/textUtils";
@@ -46,9 +47,16 @@ const FREQUENCY_OPTIONS: FilterOption<MotionFrequency>[] = [
   { value: "repeated", label: "Repeated" },
 ];
 
+const PERSON_OPTIONS: FilterOption<MotionPerson>[] = [
+  { value: "all", label: "All" },
+  { value: 1, label: "I / we" },
+  { value: 2, label: "you / you all" },
+  { value: 3, label: "he / she / they" },
+];
+
 const stripBrackets = (text: string): string => text.replace(/[[\]]/g, "");
 
-function FilterRow<T extends string>({
+function FilterRow<T extends string | number>({
   label,
   options,
   value,
@@ -166,6 +174,7 @@ const MotionQuiz: React.FC = () => {
   const [mode, setMode] = useState<Filter<MotionMode>>("all");
   const [tense, setTense] = useState<Filter<MotionTense>>("all");
   const [frequency, setFrequency] = useState<Filter<MotionFrequency>>("all");
+  const [person, setPerson] = useState<Filter<MotionPerson>>("all");
   const [showCheatSheet, setShowCheatSheet] = useState<boolean>(false);
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -176,12 +185,13 @@ const MotionQuiz: React.FC = () => {
       (card) =>
         (mode === "all" || card.mode === mode || card.mode === "any") &&
         (tense === "all" || card.tense === tense) &&
-        (frequency === "all" || card.frequency === frequency)
+        (frequency === "all" || card.frequency === frequency) &&
+        (person === "all" || card.person === person)
     );
     return getRandomItems(matching, matching.length);
     // shuffleCount forces a fresh shuffle
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode, tense, frequency, shuffleCount]);
+  }, [mode, tense, frequency, person, shuffleCount]);
 
   const currentItem = currentItems[currentIndex];
 
@@ -236,6 +246,12 @@ const MotionQuiz: React.FC = () => {
           options={TENSE_OPTIONS}
           value={tense}
           onChange={updateFilter(setTense)}
+        />
+        <FilterRow
+          label="Who"
+          options={PERSON_OPTIONS}
+          value={person}
+          onChange={updateFilter(setPerson)}
         />
         <FilterRow
           label="How often"
