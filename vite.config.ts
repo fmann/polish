@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
+// https://vitejs.dev/config/
 export default defineConfig({
   base: "/polish/",
   plugins: [
@@ -10,18 +11,6 @@ export default defineConfig({
       registerType: "autoUpdate",
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
-        runtimeCaching: [
-          {
-            urlPattern: /\.json$/,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "polish-data-cache",
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
       },
       manifest: {
         name: "Polish Language Learning",
@@ -32,26 +21,20 @@ export default defineConfig({
         background_color: "#ffffff",
         display: "standalone",
         orientation: "portrait-primary",
-        scope: "/",
-        start_url: "/",
+        scope: "/polish/",
+        start_url: "/polish/",
         icons: [
           {
-            src: "/icon-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/icon-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
+            src: "favicon.svg",
+            sizes: "any",
+            type: "image/svg+xml",
           },
         ],
       },
     }),
   ],
-  publicDir: "public",
   build: {
     outDir: "dist",
-    assetsDir: "assets",
+    sourcemap: false,
   },
 });

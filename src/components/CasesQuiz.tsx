@@ -17,8 +17,8 @@ const CasesQuiz: React.FC = () => {
   const { data, descriptions, loading, error } = useCasesData();
   const [currentItems, setCurrentItems] = useState<GrammaticalCase[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [showAnswer, setShowAnswer] = useState<boolean>(false);
   const [selectedCase, setSelectedCase] = useState<CaseKey>("nominative");
+  const [showAllForms, setShowAllForms] = useState<boolean>(false);
 
   const caseOptions: CaseKey[] = [
     "nominative",
@@ -35,31 +35,35 @@ const CasesQuiz: React.FC = () => {
       const quizItems = getRandomItems(data, 15);
       setCurrentItems(quizItems);
       setCurrentIndex(0);
-      setShowAnswer(false);
+      resetCard();
     }
   }, [data]);
 
   const currentItem = currentItems[currentIndex];
   const currentDescription = descriptions.find(
-    (d) => d.name && d.name.toLowerCase() === selectedCase.toLowerCase()
+    (d) => d.name && d.name.toLowerCase() === selectedCase.toLowerCase(),
   );
+
+  function resetCard(): void {
+    setSelectedCase("nominative");
+    setShowAllForms(false);
+  }
 
   const handleNext = (): void => {
     if (currentIndex < currentItems.length - 1) {
       setCurrentIndex(currentIndex + 1);
-      setShowAnswer(false);
     } else {
       const quizItems = getRandomItems(data, 15);
       setCurrentItems(quizItems);
       setCurrentIndex(0);
-      setShowAnswer(false);
     }
+    resetCard();
   };
 
   const handlePrevious = (): void => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      setShowAnswer(false);
+      resetCard();
     }
   };
 
@@ -144,65 +148,61 @@ const CasesQuiz: React.FC = () => {
       </div>
 
       <div className="quiz-card text-center min-h-[300px] flex flex-col justify-center">
-        <div className="mb-8">
-          <h2 className="text-sm text-gray-500 mb-2">
-            Base Word: {baseWord} ({translation})
-          </h2>
-          <p className="text-lg text-gray-600 mb-2">
-            What is the <strong className="capitalize">{selectedCase}</strong>{" "}
-            form?
-          </p>
-          <div className="text-3xl font-bold text-gray-900 mb-6">
-            {baseWord} → ?
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-sm text-gray-500 mb-2">
+              Base Word: {baseWord} ({translation})
+            </h2>
+            <h3 className="text-sm text-gray-500 mb-2 capitalize">
+              {selectedCase} Form
+            </h3>
+            <div className="flex items-center justify-center mb-6">
+              <p className="text-3xl font-semibold text-green-700">
+                {caseForm}
+              </p>
+              <SpeechButton
+                text={caseForm}
+                language="pl-PL"
+                className="ml-3 text-2xl text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+              />
+            </div>
           </div>
-        </div>
 
-        {!showAnswer ? (
-          <button
-            onClick={() => setShowAnswer(true)}
-            className="reveal-button mx-auto"
-          >
-            Reveal Case Form
-          </button>
-        ) : (
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-sm text-gray-500 mb-2 capitalize">
-                {selectedCase} Form
-              </h3>
-              <div className="flex items-center justify-center mb-6">
-                <p className="text-3xl font-semibold text-green-700">
-                  {caseForm}
-                </p>
-                <SpeechButton
-                  text={caseForm}
-                  language="pl-PL"
-                  className="ml-3 text-2xl text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
-                />
+          {example && (
+            <div className="border-t pt-6">
+              <h3 className="text-sm text-gray-500 mb-3">Example Usage</h3>
+              <div className="space-y-2">
+                <div className="flex items-center justify-center">
+                  <p className="polish-text">
+                    🇵🇱 {decodePolishText(example.pl)}
+                  </p>
+                  <SpeechButton
+                    text={decodePolishText(example.pl)}
+                    language="pl-PL"
+                    className="ml-2 text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
+                  />
+                </div>
+                <p className="english-text text-center">🇨🇦 {example.en}</p>
               </div>
             </div>
+          )}
 
-            {example && (
-              <div className="border-t pt-6">
-                <h3 className="text-sm text-gray-500 mb-3">Example Usage</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center">
-                    <p className="polish-text">
-                      🇵🇱 {decodePolishText(example.pl)}
-                    </p>
-                    <SpeechButton
-                      text={decodePolishText(example.pl)}
-                      language="pl-PL"
-                      className="ml-2 text-blue-500 hover:text-blue-700 transition-colors cursor-pointer"
-                    />
-                  </div>
-                  <p className="english-text text-center">🇨🇦 {example.en}</p>
-                </div>
-              </div>
-            )}
-
-            <div className="border-t pt-6">
-              <h3 className="text-sm text-gray-500 mb-3">All Case Forms</h3>
+          <div className="border-t pt-6">
+            <button
+              onClick={() => setShowAllForms(!showAllForms)}
+              aria-expanded={showAllForms}
+              className="text-sm text-gray-500 hover:text-gray-700 mb-3 inline-flex items-center"
+            >
+              <span
+                className={`inline-block mr-1 transition-transform ${
+                  showAllForms ? "rotate-90" : ""
+                }`}
+              >
+                ▶
+              </span>
+              All Case Forms
+            </button>
+            {showAllForms && (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                 {caseOptions.map((caseKey) => (
                   <div
@@ -223,9 +223,9 @@ const CasesQuiz: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       <div className="flex justify-between items-center">

@@ -17,9 +17,7 @@ export const useVocabularyData = (): DataHookResult<VocabularyWord> => {
       try {
         const response = await fetch("./data/1000-words.json");
         if (!response.ok) throw new Error("Failed to load vocabulary data");
-        const jsonData = await response.text();
-        // Parse as JavaScript object since it uses unquoted keys
-        const parsedData = eval(`(${jsonData})`) as VocabularyWord[];
+        const parsedData = (await response.json()) as VocabularyWord[];
         setData(parsedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
@@ -44,8 +42,7 @@ export const useTensesData = (): DataHookResult<TenseConjugation> => {
       try {
         const response = await fetch("./data/tenses.json");
         if (!response.ok) throw new Error("Failed to load tenses data");
-        const jsonData = await response.text();
-        const parsedData = eval(`(${jsonData})`) as TenseConjugation[];
+        const parsedData = (await response.json()) as TenseConjugation[];
         setData(parsedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
@@ -85,15 +82,10 @@ export const useCasesData = (): CasesDataResult => {
           throw new Error("Failed to load cases data");
         }
 
-        const [casesData, descriptionsData] = await Promise.all([
-          casesResponse.text(),
-          descriptionsResponse.text(),
-        ]);
-
-        const parsedCases = eval(`(${casesData})`) as GrammaticalCase[];
-        const parsedDescriptions = eval(
-          `(${descriptionsData})`
-        ) as CaseDescription[];
+        const [parsedCases, parsedDescriptions] = (await Promise.all([
+          casesResponse.json(),
+          descriptionsResponse.json(),
+        ])) as [GrammaticalCase[], CaseDescription[]];
 
         setData(parsedCases);
         setDescriptions(parsedDescriptions);

@@ -51,14 +51,6 @@ const App: React.FC = () => {
           />
         </Routes>
       </main>
-
-      <footer className="bg-gray-100 border-t mt-12">
-        <div className="max-w-4xl mx-auto px-4 py-6 text-center text-gray-600">
-          <p>
-            Learn Polish with interactive quizzes and progressive disclosure
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
