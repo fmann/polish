@@ -98,6 +98,7 @@ export type ViewType =
   | "tenses"
   | "cases"
   | "case-reference"
+  | "motion"
   | "decks";
 
 export type TenseKey =

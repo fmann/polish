@@ -9,6 +9,7 @@ import NumbersQuiz from "./components/NumbersQuiz";
 import MyWordsQuiz from "./components/MyWordsQuiz";
 import DecksQuiz from "./components/DecksQuiz";
 import CaseReference from "./components/CaseReference";
+import MotionQuiz from "./components/MotionQuiz";
 
 const App: React.FC = () => {
   return (
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           <Route path="/tenses" element={<TensesQuiz />} />
           <Route path="/cases" element={<CasesQuiz />} />
           <Route path="/case-reference" element={<CaseReference />} />
+          <Route path="/motion" element={<MotionQuiz />} />
           <Route path="/decks" element={<DecksQuiz />} />
           <Route
             path="/"
